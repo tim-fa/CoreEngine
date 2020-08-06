@@ -9,6 +9,8 @@
 
 // Local
 #include "Window.h"
+#include "Event.h"
+#include "Logger.h"
 
 namespace Core
 {
@@ -19,10 +21,12 @@ namespace Core
 			virtual ~Application();
 
 			void run();
+			void onEvent(Events::Event& e);
 
 		private:
 			std::unique_ptr<Window> window;
-			bool running;
+			bool running{true};
+			Logger logger;
 	};
 
 	// to be defined in client

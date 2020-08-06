@@ -31,7 +31,7 @@ namespace Core
 			virtual unsigned int getWidth() = 0;
 			virtual unsigned int getHeight() = 0;
 
-			virtual void setEventCallback(EventCallbackFunction& callback) = 0;
+			virtual void setEventCallback(const EventCallbackFunction& callback) = 0;
 			virtual void setVSync(bool enabled) = 0;
 			virtual bool isVSyncOn() = 0;
 

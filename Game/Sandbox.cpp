@@ -23,10 +23,5 @@ std::shared_ptr<Core::Application> Core::createApplication()
 {
     Core::Logger logger("Sandbox");
 
-
-    Core::Events::ResizeWindowEvent w(128, 256);
-
-    logger.d(Core::Events::Event::typeToString(w.getType()));
-
     return std::make_shared<Sandbox>();
 }

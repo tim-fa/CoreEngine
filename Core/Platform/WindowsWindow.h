@@ -18,7 +18,7 @@ namespace Core
 			unsigned int getWidth() override;
 			unsigned int getHeight() override;
 
-			void setEventCallback(EventCallbackFunction& callback) override;
+			void setEventCallback(const EventCallbackFunction& callback) override;
 			void setVSync(bool enabled) override;
 			bool isVSyncOn() override;
 

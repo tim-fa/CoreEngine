@@ -29,6 +29,8 @@ namespace Core {
                     return "MOUSE_MOVED";
                 case Type::WINDOW_RESIZE:
                     return "WINDOW_RESIZE";
+                case Type::WINDOW_CLOSE:
+                    return "WINDOW_CLOSE";
                 default:
                     return "INVALID";
             }

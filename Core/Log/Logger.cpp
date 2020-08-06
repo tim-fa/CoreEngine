@@ -4,26 +4,50 @@
 
 #include "Logger.h"
 
-Core::Logger::Logger(const std::string &name)
-        : name(name) {
+namespace Core
+{
 
-}
+	Logger::Logger(const std::string& name)
+		: name(name)
+	{
+	}
 
-std::string Core::Logger::getLogLevelStr(Core::Logger::LogLevel level) {
-    switch (level) {
-        case info:
-            return "Info";
-        case warn:
-            return "Warn";
-        case error:
-            return "Error";
-        case debug:
-            return "Debug";
-        default:
-            return "Unknown";
-    }
-}
+	std::string Logger::getLogLevelStr(Core::Logger::LogLevel level)
+	{
+		switch (level) {
+			case info:
+				return "Info";
+			case warn:
+				return "Warning";
+			case error:
+				return "Error";
+			case debug:
+				return "Debug";
+			default:
+				return "Unknown";
+		}
+	}
 
-void Core::Logger::log(Core::Logger::LogLevel level, const std::string &msg) {
-    printf("%s\t\t[%s]:\t %s\n", name.c_str(), getLogLevelStr(level).c_str(), msg.c_str());
+	void Logger::log(Core::Logger::LogLevel level, const std::string& msg)
+	{
+		std::string message;
+		message = addPadding(name, 15);
+		message += addPadding("[" + getLogLevelStr(level) + "]", 15);
+		message += msg + "\n";
+		printf("%s", message.c_str());
+	}
+
+	std::string Logger::addPadding(const std::string& msg, int len)
+	{
+		std::string text = msg.substr(0, std::min(static_cast<int>(msg.length()), len));
+		for (int i = msg.length(); i < len; i++) {
+			text += " ";
+		}
+		return text;
+	}
+
+	void Logger::setName(const std::string& name)
+	{
+		this->name = name;
+	}
 }

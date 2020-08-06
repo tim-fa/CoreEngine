@@ -1,19 +1,40 @@
+// Library
+#include "fmt/Format.h"
+
+// Local
 #include "KeyEvent.h"
 
-namespace Core {
-    namespace Events {
+namespace Core
+{
+	namespace Events
+	{
 
-        KeyEvent::KeyEvent(int keyCode, Event::Type type)
-                : Event(type), m_KeyCode(keyCode) {
-        }
+		KeyEvent::KeyEvent(int keyCode, Event::Type type)
+			: Event(type)
+			, m_KeyCode(keyCode)
+		{
+		}
 
-        KeyPressedEvent::KeyPressedEvent(int button, int repeat, int modifiers)
-                : KeyEvent(button, KeyPressedEvent::getStaticType()), m_Repeat(repeat), m_Modifiers(modifiers) {
-        }
+		KeyPressedEvent::KeyPressedEvent(int button, int repeat, int modifiers)
+			: KeyEvent(button, KeyPressedEvent::getStaticType())
+			, m_Repeat(repeat)
+			, m_Modifiers(modifiers)
+		{
+		}
 
-        KeyReleasedEvent::KeyReleasedEvent(int button)
-                : KeyEvent(button, KeyReleasedEvent::getStaticType()) {
-        }
+		std::string KeyPressedEvent::toString() const
+		{
+			return fmt::format("KeyPressedEvent: (Key: {}, Repeats: {})", getKeyCode(), getRepeat());
+		}
 
-    }
+		KeyReleasedEvent::KeyReleasedEvent(int button)
+			: KeyEvent(button, KeyReleasedEvent::getStaticType())
+		{
+		}
+
+		std::string KeyReleasedEvent::toString() const
+		{
+			return fmt::format("KeyReleasedEvent: (Key: {})", getKeyCode());
+		}
+	}
 }

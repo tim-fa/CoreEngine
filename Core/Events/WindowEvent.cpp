@@ -8,7 +8,7 @@ namespace Core {
     namespace Events {
 
         ResizeWindowEvent::ResizeWindowEvent(unsigned int width, unsigned int height)
-                : Event(ResizeWindowEvent::GetStaticType()), m_Size(glm::tvec2<unsigned int>(width, height)) {
+                : Event(ResizeWindowEvent::getStaticType()), m_Size(glm::tvec2<unsigned int>(width, height)) {
         }
 
     }
