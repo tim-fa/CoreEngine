@@ -1,7 +1,6 @@
 #pragma once
 
 // Library
-#include "glm/glm.hpp"
 #include "fmt/format.h"
 
 // Local
@@ -15,28 +14,24 @@ namespace Core
 		class ResizeWindowEvent : public Event
 		{
 			protected:
-				glm::tvec2<unsigned int> m_Size;
+				float width;
+				float height;
 			public:
 				ResizeWindowEvent(unsigned int width, unsigned int height);
 
-				inline const glm::tvec2<unsigned int>& getSize() const
-				{
-					return m_Size;
-				}
-
 				inline const unsigned int getWidth() const
 				{
-					return m_Size.x;
+					return width;
 				}
 
 				inline const unsigned int getHeight() const
 				{
-					return m_Size.y;
+					return height;
 				}
 
 				inline std::string toString() const override
 				{
-					return fmt::format("ResizeWindowEvent: {}, {}", m_Size.x, m_Size.y);
+					return fmt::format("ResizeWindowEvent: {}, {}", width, height);
 				}
 
 			public:

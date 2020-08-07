@@ -1,8 +1,5 @@
 #pragma once
 
-// Library
-#include "glm/glm.hpp"
-
 // Local
 #include "Event.h"
 
@@ -12,16 +9,15 @@ namespace Core { namespace Events {
 	{
 	protected:
 		int m_Button;
-		glm::vec2 m_Position;
+		float x, y;
 	protected:
 		MouseButtonEvent(int button, float x, float y, Event::Type type);
 	public:
-		inline const int GetButton() const { return m_Button; }
-		inline const float GetX() const { return m_Position.x; }
-		inline const float GetY() const { return m_Position.y; }
-		inline const glm::vec2& GetPosition() const { return m_Position; }
+		inline const int getButton() const { return m_Button; }
+		inline const float GetX() const { return x; }
+		inline const float GetY() const { return y; }
 
-		inline static int GetStaticType() { return (int)Event::Type::MOUSE_PRESSED | (int)Event::Type::MOUSE_RELEASED; }
+		inline static int getStaticType() { return (int)Event::Type::MOUSE_PRESSED | (int)Event::Type::MOUSE_RELEASED; }
 	};
 
 	class MousePressedEvent : public MouseButtonEvent
@@ -31,7 +27,7 @@ namespace Core { namespace Events {
 
 		std::string toString() const override;
 
-		inline static Type GetStaticType() { return Event::Type::MOUSE_PRESSED; }
+		inline static Type getStaticType() { return Event::Type::MOUSE_PRESSED; }
 	};
 
 		class MouseReleasedEvent : public MouseButtonEvent
@@ -39,38 +35,36 @@ namespace Core { namespace Events {
 			public:
 				MouseReleasedEvent(int button, float x, float y);
 
-				inline static Type GetStaticType() { return Event::Type::MOUSE_RELEASED; }
+				inline static Type getStaticType() { return Event::Type::MOUSE_RELEASED; }
 				std::string toString() const override;
 		};
 
 		class MouseMovedEvent : public Event
 		{
 			private:
-				glm::vec2 m_Position;
+				float x, y;
 				bool m_Dragged;
 			public:
 				MouseMovedEvent(float x, float y, bool dragged);
 
-				inline const float GetX() const { return m_Position.x; }
-				inline const float GetY() const { return m_Position.y; }
-				inline const glm::vec2& GetPosition() const { return m_Position; }
+				inline const float getX() const { return x; }
+				inline const float getY() const { return y; }
 				inline const bool IsDragged() const { return m_Dragged; }
-				inline static Type GetStaticType() { return Event::Type::MOUSE_MOVED; }
+				inline static Type getStaticType() { return Event::Type::MOUSE_MOVED; }
 				std::string toString() const override;
 		};
 
 		class MouseScrolledEvent : public Event
 		{
 			private:
-				glm::vec2 offset;
+				float offx, offy;
 				bool m_Dragged;
 			public:
 				MouseScrolledEvent(float xOffset, float yOffset);
 
-				inline const float GetXoffs() const { return offset.x; }
-				inline const float GetYoffs() const { return offset.y; }
-				inline const glm::vec2& getOffset() const { return offset; }
-				inline static Type GetStaticType() { return Event::Type::MOUSE_SCROLLED; }
+				inline const float getXoffs() const { return offx; }
+				inline const float getYoffs() const { return offy; }
+				inline static Type getStaticType() { return Event::Type::MOUSE_SCROLLED; }
 				std::string toString() const override;
 		};
 

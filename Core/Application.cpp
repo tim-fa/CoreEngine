@@ -48,9 +48,16 @@ void Core::Application::onEvent(Core::Events::Event& e)
 void Core::Application::addLayer(Core::Layer* layer)
 {
 	layerHandler.addLayer(layer);
+	layer->onCreate();
 }
 
 void Core::Application::addOverlay(Core::Layer* overlay)
 {
 	layerHandler.addOverlay(overlay);
+	overlay->onCreate();
+}
+
+Core::Window& Core::Application::getWindow()
+{
+	return *window;
 }

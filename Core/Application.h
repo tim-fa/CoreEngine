@@ -28,6 +28,8 @@ namespace Core
 			void addLayer(Layer* layer);
 			void addOverlay(Layer* overlay);
 
+			Window& getWindow();
+
 		protected:
 			Logger logger;
 

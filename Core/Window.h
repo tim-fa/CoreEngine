@@ -4,6 +4,7 @@
 
 // Local
 #include "Events/Event.h"
+#include "GLFW/glfw3.h"
 
 namespace Core
 {
@@ -36,5 +37,7 @@ namespace Core
 			virtual bool isVSyncOn() = 0;
 
 			static Window* create(const WindowProps& props = WindowProps());
+
+			virtual GLFWwindow* getGLFWWindow() = 0;
 	};
 }

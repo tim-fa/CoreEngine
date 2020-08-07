@@ -1,5 +1,8 @@
 #pragma once
 
+// Library
+#include "fmt/format.h"
+
 // Local
 #include "Event.h"
 
@@ -66,6 +69,19 @@ namespace Core
 				inline static Type getStaticType()
 				{
 					return Event::Type::KEY_RELEASED;
+				}
+
+				std::string toString() const override;
+		};
+
+		class KeyTypedEvent : public KeyEvent
+		{
+			public:
+				explicit KeyTypedEvent(int button);
+
+				inline static Type getStaticType()
+				{
+					return Event::Type::KEY_TYPED;
 				}
 
 				std::string toString() const override;

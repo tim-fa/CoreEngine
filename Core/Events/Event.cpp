@@ -19,14 +19,18 @@ namespace Core {
             switch (type) {
                 case Type::KEY_PRESSED:
                     return "KEY_PRESSED";
-                case Type::KEY_RELEASED:
-                    return "KEY_RELEASED";
+				case Type::KEY_RELEASED:
+					return "KEY_RELEASED";
+				case Type::KEY_TYPED:
+					return "KEY_TYPED";
                 case Type::MOUSE_PRESSED:
                     return "MOUSE_PRESSED";
                 case Type::MOUSE_RELEASED:
                     return "MOUSE_RELEASED";
-                case Type::MOUSE_MOVED:
-                    return "MOUSE_MOVED";
+				case Type::MOUSE_MOVED:
+					return "MOUSE_MOVED";
+				case Type::MOUSE_SCROLLED:
+					return "MOUSE_SCROLLED";
                 case Type::WINDOW_RESIZE:
                     return "WINDOW_RESIZE";
                 case Type::WINDOW_CLOSE:

@@ -62,13 +62,14 @@ namespace Core
 		data.height = props.height;
 
 		logger.d("Creating new Window: '{}', {}x{}", data.title, data.width, data.height);
-
 		if (!glfwInitialized) {
+
 			int status = glfwInit();
 			if (!status) {
 				logger.e("Could not initialize GLFW");
 				return;
 			}
+
 			glfwSetErrorCallback([](int errorCode, const char* description) {
 				printf("%s", fmt::format("Fatal GLFW error: (Code: {}, {})\n", errorCode, description).c_str());
 			});
@@ -78,6 +79,11 @@ namespace Core
 		glfwMakeContextCurrent(window);
 		glfwSetWindowUserPointer(window, &data);
 		setVSync(true);
+
+		if (glewInit()) {
+			logger.e("failed to initialize GLEW\n");
+			return;
+		}
 
 		// Set GLFW Callbacks
 		glfwSetWindowSizeCallback(window, [](GLFWwindow* window, int width, int height) {
@@ -114,6 +120,12 @@ namespace Core
 					break;
 				}
 			}
+		});
+
+		glfwSetCharCallback(window, [](GLFWwindow* window, unsigned int character) {
+			WindowData& windowData = *(WindowData*)glfwGetWindowUserPointer(window);
+			Events::KeyTypedEvent e((int)character);
+			windowData.callback(e);
 		});
 
 		glfwSetMouseButtonCallback(window, [](GLFWwindow* window, int button, int action, int mods) {

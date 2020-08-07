@@ -26,14 +26,15 @@ namespace Core
 				{
 						KEY_PRESSED = BIT(0),
 						KEY_RELEASED = BIT(1),
+						KEY_TYPED = BIT(2),
 
-						MOUSE_PRESSED = BIT(2),
-						MOUSE_RELEASED = BIT(3),
-						MOUSE_MOVED = BIT(4),
-						MOUSE_SCROLLED = BIT(5),
+						MOUSE_PRESSED = BIT(3),
+						MOUSE_RELEASED = BIT(4),
+						MOUSE_MOVED = BIT(5),
+						MOUSE_SCROLLED = BIT(6),
 
-						WINDOW_RESIZE = BIT(6),
-						WINDOW_CLOSE = BIT(7)
+						WINDOW_RESIZE = BIT(7),
+						WINDOW_CLOSE = BIT(8)
 				};
 			protected:
 				bool m_Handled;

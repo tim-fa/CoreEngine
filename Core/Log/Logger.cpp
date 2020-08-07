@@ -2,7 +2,17 @@
 // Created by Tim on 06.08.2020.
 //
 
+// STL
+#include <string>
+
+// Library
+#include "termcolor/termcolor.hpp"
+
+// Local
 #include "Logger.h"
+
+
+static Core::Logger::LogLevel maxLoglevel = Core::Logger::LogLevel::debug;
 
 namespace Core
 {
@@ -30,11 +40,30 @@ namespace Core
 
 	void Logger::log(Core::Logger::LogLevel level, const std::string& msg)
 	{
+		if(level > maxLoglevel)
+			return;
+
+		switch(level){
+			case info:
+				std::cout << termcolor::green;
+				break;
+			case warn:
+				std::cout << termcolor::yellow;
+				break;
+			case error:
+				std::cout << termcolor::red;
+				break;
+			case debug:
+				std::cout << termcolor::white;
+				break;
+		}
 		std::string message;
 		message = addPadding(name, 15);
 		message += addPadding("[" + getLogLevelStr(level) + "]", 15);
 		message += msg + "\n";
 		printf("%s", message.c_str());
+
+		std::cout << termcolor::reset;
 	}
 
 	std::string Logger::addPadding(const std::string& msg, int len)
@@ -49,5 +78,10 @@ namespace Core
 	void Logger::setName(const std::string& name)
 	{
 		this->name = name;
+	}
+
+	void Logger::setMaxLoglevel(Logger::LogLevel level)
+	{
+		maxLoglevel = level;
 	}
 }

@@ -2,6 +2,9 @@
 // Created by Tim on 07.08.2020.
 //
 
+// STL
+#include <algorithm>
+
 // Local
 #include "LayerHandler.h"
 #include "Layer.h"

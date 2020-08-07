@@ -1,4 +1,5 @@
 // Library
+#include "GL/glew.h"
 #include "GLFW/glfw3.h"
 
 // Local
@@ -21,6 +22,11 @@ namespace Core
 			void setEventCallback(const EventCallbackFunction& callback) override;
 			void setVSync(bool enabled) override;
 			bool isVSyncOn() override;
+
+			GLFWwindow* getGLFWWindow()
+			{
+				return window;
+			}
 
 		private:
 			virtual void init(const WindowProps& props);

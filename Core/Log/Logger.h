@@ -14,15 +14,15 @@ namespace Core
 {
 	class Logger
 	{
+		public:
 			enum LogLevel
 			{
+				error,
 				info,
 				warn,
-				error,
 				debug
 			};
 
-		public:
 			explicit Logger(const std::string& name);
 
 			template<class ... Args>
@@ -50,6 +50,8 @@ namespace Core
 			}
 
 			void setName(const std::string& name);
+
+			static void setMaxLoglevel(LogLevel level);
 
 		private:
 			static std::string getLogLevelStr(LogLevel level);
