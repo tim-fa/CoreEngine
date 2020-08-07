@@ -23,7 +23,7 @@ namespace Core
 			};
 
 		public:
-			Logger(const std::string& name);
+			explicit Logger(const std::string& name);
 
 			template<class ... Args>
 			void i(const std::string& msg, Args ... args)

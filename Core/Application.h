@@ -9,8 +9,10 @@
 
 // Local
 #include "Window.h"
-#include "Event.h"
 #include "Logger.h"
+#include "Events/Event.h"
+#include "Layers/Layer.h"
+#include "Layers/LayerHandler.h"
 
 namespace Core
 {
@@ -23,10 +25,16 @@ namespace Core
 			void run();
 			void onEvent(Events::Event& e);
 
+			void addLayer(Layer* layer);
+			void addOverlay(Layer* overlay);
+
+		protected:
+			Logger logger;
+
 		private:
+			LayerHandler layerHandler;
 			std::unique_ptr<Window> window;
 			bool running{true};
-			Logger logger;
 	};
 
 	// to be defined in client

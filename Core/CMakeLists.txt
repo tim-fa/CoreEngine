@@ -4,6 +4,7 @@ file(
 	GLOB SOURCE_FILES
 	*.cpp
 	Platform/*.cpp
+	Layers/*.cpp
 )
 
 hunter_add_package(fmt)
@@ -13,7 +14,7 @@ hunter_add_package(glfw)
 find_package(glfw3 CONFIG REQUIRED)
 
 add_library(Engine STATIC ${SOURCE_FILES})
-target_include_directories(Engine PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} Platform/*.h)
+target_include_directories(Engine PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_subdirectory(Events)
 add_subdirectory(Log)
