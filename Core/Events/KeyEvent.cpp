@@ -4,7 +4,7 @@
 namespace Core::Events
 {
 
-	KeyEvent::KeyEvent(int keyCode, Event::Type type)
+	KeyEvent::KeyEvent(int keyCode, Event::EventType type)
 		: Event(type)
 		, m_KeyCode(keyCode)
 	{

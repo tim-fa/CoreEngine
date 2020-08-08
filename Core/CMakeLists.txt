@@ -6,6 +6,7 @@ file(
 	Platform/*.cpp
 	Layers/*.cpp
 	ImGui/*.cpp
+	Input/*.cpp
 )
 
 cmake_policy(SET CMP0074 OLD)

@@ -8,7 +8,7 @@
 namespace Core::Events
 {
 
-	MouseButtonEvent::MouseButtonEvent(int button, float x, float y, Type type)
+	MouseButtonEvent::MouseButtonEvent(int button, float x, float y, EventType type)
 		: Event(type)
 		, m_Button(button)
 		, x(x)

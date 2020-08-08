@@ -17,7 +17,7 @@ namespace Core
 				int m_KeyCode;
 				int m_Count;
 			public:
-				KeyEvent(int keyCode, Event::Type type);
+				KeyEvent(int keyCode, Event::EventType type);
 
 				inline int getKeyCode() const
 				{
@@ -26,7 +26,7 @@ namespace Core
 
 				inline static int getStaticType()
 				{
-					return (int)Event::Type::KEY_PRESSED | (int)Event::Type::KEY_RELEASED;
+					return (int)Event::EventType::KeyPressed | (int)Event::EventType::KeyReleased;
 				}
 		};
 
@@ -53,9 +53,9 @@ namespace Core
 					return (bool)(m_Modifiers & modifier);
 				}
 
-				inline static Type getStaticType()
+				inline static EventType getStaticType()
 				{
-					return Event::Type::KEY_PRESSED;
+					return Event::EventType::KeyPressed;
 				}
 
 				std::string toString() const override;
@@ -66,9 +66,9 @@ namespace Core
 			public:
 				KeyReleasedEvent(int button);
 
-				inline static Type getStaticType()
+				inline static EventType getStaticType()
 				{
-					return Event::Type::KEY_RELEASED;
+					return Event::EventType::KeyReleased;
 				}
 
 				std::string toString() const override;
@@ -79,9 +79,9 @@ namespace Core
 			public:
 				explicit KeyTypedEvent(int button);
 
-				inline static Type getStaticType()
+				inline static EventType getStaticType()
 				{
-					return Event::Type::KEY_TYPED;
+					return Event::EventType::KeyTyped;
 				}
 
 				std::string toString() const override;

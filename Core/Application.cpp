@@ -5,6 +5,7 @@
 // Local
 #include "Application.h"
 #include "Events/EventDispatcher.h"
+#include "Input/Input.h"
 
 Core::Application::Application()
 	: logger("Application")
@@ -19,9 +20,10 @@ Core::Application::~Application()
 void Core::Application::run()
 {
 	while (running) {
-		for(auto& layer : layerHandler){
+		for (auto& layer : layerHandler) {
 			layer->onUpdate();
 		}
+
 		window->onUpdate();
 	}
 }
@@ -35,7 +37,11 @@ void Core::Application::onEvent(Core::Events::Event& e)
 		return true;
 	});
 
-	// logger.d("Received Event {}", e.toString());
+	dispatcher.Dispatch<Events::KeyPressedEvent>(Input::onKeyPressedEvent);
+	dispatcher.Dispatch<Events::KeyReleasedEvent>(Input::onKeyReleasedEvent);
+	dispatcher.Dispatch<Events::MousePressedEvent>(Input::onMousePressedEvent);
+	dispatcher.Dispatch<Events::MouseReleasedEvent>(Input::onMouseReleasedEvent);
+	dispatcher.Dispatch<Events::MouseMovedEvent>(Input::onMouseMovedEvent);
 
 	for (auto it = layerHandler.end(); it != layerHandler.begin();) {
 		(*--it)->onEvent(e);

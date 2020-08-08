@@ -11,13 +11,13 @@ namespace Core { namespace Events {
 		int m_Button;
 		float x, y;
 	protected:
-		MouseButtonEvent(int button, float x, float y, Event::Type type);
+		MouseButtonEvent(int button, float x, float y, Event::EventType type);
 	public:
 		inline const int getButton() const { return m_Button; }
 		inline const float GetX() const { return x; }
 		inline const float GetY() const { return y; }
 
-		inline static int getStaticType() { return (int)Event::Type::MOUSE_PRESSED | (int)Event::Type::MOUSE_RELEASED; }
+		inline static int getStaticType() { return (int)Event::EventType::MousePressed | (int)Event::EventType::MouseReleased; }
 	};
 
 	class MousePressedEvent : public MouseButtonEvent
@@ -27,7 +27,7 @@ namespace Core { namespace Events {
 
 		std::string toString() const override;
 
-		inline static Type getStaticType() { return Event::Type::MOUSE_PRESSED; }
+		inline static EventType getStaticType() { return Event::EventType::MousePressed; }
 	};
 
 		class MouseReleasedEvent : public MouseButtonEvent
@@ -35,7 +35,7 @@ namespace Core { namespace Events {
 			public:
 				MouseReleasedEvent(int button, float x, float y);
 
-				inline static Type getStaticType() { return Event::Type::MOUSE_RELEASED; }
+				inline static EventType getStaticType() { return Event::EventType::MouseReleased; }
 				std::string toString() const override;
 		};
 
@@ -50,7 +50,7 @@ namespace Core { namespace Events {
 				inline const float getX() const { return x; }
 				inline const float getY() const { return y; }
 				inline const bool IsDragged() const { return m_Dragged; }
-				inline static Type getStaticType() { return Event::Type::MOUSE_MOVED; }
+				inline static EventType getStaticType() { return Event::EventType::MouseMoved; }
 				std::string toString() const override;
 		};
 
@@ -64,7 +64,7 @@ namespace Core { namespace Events {
 
 				inline const float getXoffs() const { return offx; }
 				inline const float getYoffs() const { return offy; }
-				inline static Type getStaticType() { return Event::Type::MOUSE_SCROLLED; }
+				inline static EventType getStaticType() { return Event::EventType::MouseScrolled; }
 				std::string toString() const override;
 		};
 

@@ -22,28 +22,28 @@ namespace Core
 				friend class EventDispatcher;
 
 			public:
-				enum class Type
+				enum class EventType
 				{
-						KEY_PRESSED = BIT(0),
-						KEY_RELEASED = BIT(1),
-						KEY_TYPED = BIT(2),
+						KeyPressed = BIT(0),
+						KeyReleased = BIT(1),
+						KeyTyped = BIT(2),
 
-						MOUSE_PRESSED = BIT(3),
-						MOUSE_RELEASED = BIT(4),
-						MOUSE_MOVED = BIT(5),
-						MOUSE_SCROLLED = BIT(6),
+						MousePressed = BIT(3),
+						MouseReleased = BIT(4),
+						MouseMoved = BIT(5),
+						MouseScrolled = BIT(6),
 
-						WINDOW_RESIZE = BIT(7),
-						WINDOW_CLOSE = BIT(8)
+						WindowResize = BIT(7),
+						WindowClose = BIT(8)
 				};
 			protected:
 				bool m_Handled;
-				Type m_Type;
+				EventType m_Type;
 			protected:
-				explicit Event(Type type);
+				explicit Event(EventType type);
 
 			public:
-				inline Type getType() const
+				inline EventType getType() const
 				{
 					return m_Type;
 				}
@@ -55,7 +55,7 @@ namespace Core
 
 				virtual std::string toString() const;
 
-				static std::string typeToString(Type type);
+				static std::string typeToString(EventType type);
 		};
 	}
 }

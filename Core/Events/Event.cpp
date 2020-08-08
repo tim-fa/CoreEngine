@@ -7,7 +7,7 @@
 namespace Core {
     namespace Events {
 
-        Event::Event(Type type)
+        Event::Event(EventType type)
                 : m_Type(type), m_Handled(false) {
         }
 
@@ -15,26 +15,26 @@ namespace Core {
             return "Event: ";
         }
 
-        std::string Event::typeToString(Type type) {
+        std::string Event::typeToString(EventType type) {
             switch (type) {
-                case Type::KEY_PRESSED:
-                    return "KEY_PRESSED";
-				case Type::KEY_RELEASED:
-					return "KEY_RELEASED";
-				case Type::KEY_TYPED:
-					return "KEY_TYPED";
-                case Type::MOUSE_PRESSED:
-                    return "MOUSE_PRESSED";
-                case Type::MOUSE_RELEASED:
-                    return "MOUSE_RELEASED";
-				case Type::MOUSE_MOVED:
-					return "MOUSE_MOVED";
-				case Type::MOUSE_SCROLLED:
-					return "MOUSE_SCROLLED";
-                case Type::WINDOW_RESIZE:
-                    return "WINDOW_RESIZE";
-                case Type::WINDOW_CLOSE:
-                    return "WINDOW_CLOSE";
+                case EventType::KeyPressed:
+                    return "KeyPressed";
+				case EventType::KeyReleased:
+					return "KeyReleased";
+				case EventType::KeyTyped:
+					return "KeyTyped";
+                case EventType::MousePressed:
+                    return "MousePressed";
+                case EventType::MouseReleased:
+                    return "MouseReleased";
+				case EventType::MouseMoved:
+					return "MouseMoved";
+				case EventType::MouseScrolled:
+					return "MouseScrolled";
+                case EventType::WindowResize:
+                    return "WindowResize";
+                case EventType::WindowClose:
+                    return "WindowClose";
                 default:
                     return "INVALID";
             }

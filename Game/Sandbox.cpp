@@ -2,7 +2,8 @@
 #include <memory>
 
 // Engine
-#include "Core.h"
+#include "EntryPoint.h"
+#include "Application.h"
 #include "Events/Events.h"
 #include "ImGui/ImGuiLayer.h"
 

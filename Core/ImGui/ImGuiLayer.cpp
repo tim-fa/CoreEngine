@@ -7,7 +7,9 @@
 #include "imgui_impl_opengl3.h"
 
 // Local
+#include "Macros.h"
 #include "ImGuiLayer.h"
+#include "Input/Keycodes.h"
 
 namespace Core
 {
@@ -32,27 +34,27 @@ namespace Core
 		io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
 
 		// TEMPORARY: should eventually use Hazel key codes
-		io.KeyMap[ImGuiKey_Tab] = GLFW_KEY_TAB;
-		io.KeyMap[ImGuiKey_LeftArrow] = GLFW_KEY_LEFT;
-		io.KeyMap[ImGuiKey_RightArrow] = GLFW_KEY_RIGHT;
-		io.KeyMap[ImGuiKey_UpArrow] = GLFW_KEY_UP;
-		io.KeyMap[ImGuiKey_DownArrow] = GLFW_KEY_DOWN;
-		io.KeyMap[ImGuiKey_PageUp] = GLFW_KEY_PAGE_UP;
-		io.KeyMap[ImGuiKey_PageDown] = GLFW_KEY_PAGE_DOWN;
-		io.KeyMap[ImGuiKey_Home] = GLFW_KEY_HOME;
-		io.KeyMap[ImGuiKey_End] = GLFW_KEY_END;
-		io.KeyMap[ImGuiKey_Insert] = GLFW_KEY_INSERT;
-		io.KeyMap[ImGuiKey_Delete] = GLFW_KEY_DELETE;
-		io.KeyMap[ImGuiKey_Backspace] = GLFW_KEY_BACKSPACE;
-		io.KeyMap[ImGuiKey_Space] = GLFW_KEY_SPACE;
-		io.KeyMap[ImGuiKey_Enter] = GLFW_KEY_ENTER;
-		io.KeyMap[ImGuiKey_Escape] = GLFW_KEY_ESCAPE;
-		io.KeyMap[ImGuiKey_A] = GLFW_KEY_A;
-		io.KeyMap[ImGuiKey_C] = GLFW_KEY_C;
-		io.KeyMap[ImGuiKey_V] = GLFW_KEY_V;
-		io.KeyMap[ImGuiKey_X] = GLFW_KEY_X;
-		io.KeyMap[ImGuiKey_Y] = GLFW_KEY_Y;
-		io.KeyMap[ImGuiKey_Z] = GLFW_KEY_Z;
+		io.KeyMap[ImGuiKey_Tab] = KeyCode::CR_KEY_TAB;
+		io.KeyMap[ImGuiKey_LeftArrow] = KeyCode::CR_KEY_LEFT;
+		io.KeyMap[ImGuiKey_RightArrow] = KeyCode::CR_KEY_RIGHT;
+		io.KeyMap[ImGuiKey_UpArrow] = KeyCode::CR_KEY_UP;
+		io.KeyMap[ImGuiKey_DownArrow] = KeyCode::CR_KEY_DOWN;
+		io.KeyMap[ImGuiKey_PageUp] = KeyCode::CR_KEY_PAGE_UP;
+		io.KeyMap[ImGuiKey_PageDown] = KeyCode::CR_KEY_PAGE_DOWN;
+		io.KeyMap[ImGuiKey_Home] = KeyCode::CR_KEY_HOME;
+		io.KeyMap[ImGuiKey_End] = KeyCode::CR_KEY_END;
+		io.KeyMap[ImGuiKey_Insert] = KeyCode::CR_KEY_INSERT;
+		io.KeyMap[ImGuiKey_Delete] = KeyCode::CR_KEY_DELETE;
+		io.KeyMap[ImGuiKey_Backspace] = KeyCode::CR_KEY_BACKSPACE;
+		io.KeyMap[ImGuiKey_Space] = KeyCode::CR_KEY_SPACE;
+		io.KeyMap[ImGuiKey_Enter] = KeyCode::CR_KEY_ENTER;
+		io.KeyMap[ImGuiKey_Escape] = KeyCode::CR_KEY_ESCAPE;
+		io.KeyMap[ImGuiKey_A] = KeyCode::CR_KEY_A;
+		io.KeyMap[ImGuiKey_C] = KeyCode::CR_KEY_C;
+		io.KeyMap[ImGuiKey_V] = KeyCode::CR_KEY_V;
+		io.KeyMap[ImGuiKey_X] = KeyCode::CR_KEY_X;
+		io.KeyMap[ImGuiKey_Y] = KeyCode::CR_KEY_Y;
+		io.KeyMap[ImGuiKey_Z] = KeyCode::CR_KEY_Z;
 
 		ImGui_ImplOpenGL3_Init("#version 410");
 	}
@@ -86,14 +88,14 @@ namespace Core
 
 
 		Events::EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<Events::MousePressedEvent>(std::bind(&ImGuiLayer::onMouseButtonPressedEvent, this, std::placeholders::_1));
-		dispatcher.Dispatch<Events::MouseReleasedEvent>(std::bind(&ImGuiLayer::onMouseButtonReleasedEvent, this, std::placeholders::_1));
-		dispatcher.Dispatch<Events::MouseScrolledEvent>(std::bind(&ImGuiLayer::onMouseScrolledEvent, this, std::placeholders::_1));
-		dispatcher.Dispatch<Events::MouseMovedEvent>(std::bind(&ImGuiLayer::onMouseMovedEvent, this, std::placeholders::_1));
-		dispatcher.Dispatch<Events::ResizeWindowEvent>(std::bind(&ImGuiLayer::onWindowResizedEvent, this, std::placeholders::_1));
-		dispatcher.Dispatch<Events::KeyTypedEvent>(std::bind(&ImGuiLayer::onKeyTypedEvent, this, std::placeholders::_1));
-		dispatcher.Dispatch<Events::KeyPressedEvent>(std::bind(&ImGuiLayer::onKeyPressedEvent, this, std::placeholders::_1));
-		dispatcher.Dispatch<Events::KeyReleasedEvent>(std::bind(&ImGuiLayer::onKeyReleasedEvent, this, std::placeholders::_1));
+		dispatcher.Dispatch<Events::MousePressedEvent>(CR_BIND_EVENT_CALLBACK(ImGuiLayer::onMouseButtonPressedEvent));
+		dispatcher.Dispatch<Events::MouseReleasedEvent>(CR_BIND_EVENT_CALLBACK(ImGuiLayer::onMouseButtonReleasedEvent));
+		dispatcher.Dispatch<Events::MouseScrolledEvent>(CR_BIND_EVENT_CALLBACK(ImGuiLayer::onMouseScrolledEvent));
+		dispatcher.Dispatch<Events::MouseMovedEvent>(CR_BIND_EVENT_CALLBACK(ImGuiLayer::onMouseMovedEvent));
+		dispatcher.Dispatch<Events::ResizeWindowEvent>(CR_BIND_EVENT_CALLBACK(ImGuiLayer::onWindowResizedEvent));
+		dispatcher.Dispatch<Events::KeyTypedEvent>(CR_BIND_EVENT_CALLBACK(ImGuiLayer::onKeyTypedEvent));
+		dispatcher.Dispatch<Events::KeyPressedEvent>(CR_BIND_EVENT_CALLBACK(ImGuiLayer::onKeyPressedEvent));
+		dispatcher.Dispatch<Events::KeyReleasedEvent>(CR_BIND_EVENT_CALLBACK(ImGuiLayer::onKeyReleasedEvent));
 	}
 
 	bool ImGuiLayer::onMouseButtonPressedEvent(Events::MousePressedEvent& e)
@@ -152,10 +154,10 @@ namespace Core
 		auto& io = ImGui::GetIO();
 		io.KeysDown[e.getKeyCode()] = true;
 
-		io.KeyCtrl = io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL];
-		io.KeyAlt = io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT];
-		io.KeyShift = io.KeysDown[GLFW_KEY_LEFT_SHIFT] || io.KeysDown[GLFW_KEY_RIGHT_SHIFT];
-		io.KeySuper = io.KeysDown[GLFW_KEY_LEFT_SUPER] || io.KeysDown[GLFW_KEY_RIGHT_SUPER];
+		io.KeyCtrl = io.KeysDown[KeyCode::CR_KEY_LEFT_CONTROL] || io.KeysDown[KeyCode::CR_KEY_RIGHT_CONTROL];
+		io.KeyAlt = io.KeysDown[KeyCode::CR_KEY_LEFT_ALT] || io.KeysDown[KeyCode::CR_KEY_RIGHT_ALT];
+		io.KeyShift = io.KeysDown[KeyCode::CR_KEY_LEFT_SHIFT] || io.KeysDown[KeyCode::CR_KEY_RIGHT_SHIFT];
+		io.KeySuper = io.KeysDown[KeyCode::CR_KEY_LEFT_SUPER] || io.KeysDown[KeyCode::CR_KEY_RIGHT_SUPER];
 		return false;
 	}
 

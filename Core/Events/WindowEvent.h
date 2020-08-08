@@ -35,9 +35,9 @@ namespace Core
 				}
 
 			public:
-				inline static Type getStaticType()
+				inline static EventType getStaticType()
 				{
-					return Event::Type::WINDOW_RESIZE;
+					return Event::EventType::WindowResize;
 				}
 		};
 
@@ -55,9 +55,9 @@ namespace Core
 				}
 
 			public:
-				inline static Type getStaticType()
+				inline static EventType getStaticType()
 				{
-					return Event::Type::WINDOW_CLOSE;
+					return Event::EventType::WindowClose;
 				}
 		};
 	}
