@@ -13,7 +13,7 @@ namespace Core
 {
 	LayerHandler::LayerHandler()
 	{
-		layerInserter = layers.begin();
+		firstLayerIdx = 0;
 	}
 
 	LayerHandler::~LayerHandler()
@@ -26,12 +26,13 @@ namespace Core
 
 	void LayerHandler::addLayer(Layer* layer)
 	{
-		layerInserter = layers.emplace(layerInserter, layer);
+		layers.emplace(layers.begin() + firstLayerIdx, layer);
 	}
 
 	void LayerHandler::addOverlay(Layer* overlay)
 	{
-		layers.emplace_back(overlay);
+		layers.insert(layers.begin(), overlay);
+		firstLayerIdx++;
 	}
 
 	void LayerHandler::removeLayer(Layer* layer)
@@ -39,7 +40,7 @@ namespace Core
 		auto it = std::find(begin(), end(), layer);
 		if (it != end()) {
 			layers.erase(it);
-			layerInserter--;
+			firstLayerIdx--;
 		}
 	}
 

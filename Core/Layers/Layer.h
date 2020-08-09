@@ -31,6 +31,10 @@ namespace Core
 			{
 			}
 
+			virtual void onImGuiRender()
+			{
+			}
+
 			const std::string& getDebugName() const;
 
 		private:

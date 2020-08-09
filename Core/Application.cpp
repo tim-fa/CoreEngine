@@ -4,14 +4,16 @@
 
 // Local
 #include "Application.h"
-#include "Events/EventDispatcher.h"
 #include "Input/Input.h"
 
 Core::Application::Application()
 	: logger("Application")
+	, imGuiLayer(*this)
 {
 	window = std::unique_ptr<Window>(Window::create());
 	window->setEventCallback(std::bind(&Application::onEvent, this, std::placeholders::_1));
+
+	addOverlay(&imGuiLayer);
 }
 
 Core::Application::~Application()
@@ -24,6 +26,11 @@ void Core::Application::run()
 			layer->onUpdate();
 		}
 
+		imGuiLayer.begin();
+		for (auto& layer : layerHandler) {
+			layer->onImGuiRender();
+		}
+		imGuiLayer.end();
 		window->onUpdate();
 	}
 }
@@ -43,11 +50,10 @@ void Core::Application::onEvent(Core::Events::Event& e)
 	dispatcher.Dispatch<Events::MouseReleasedEvent>(Input::onMouseReleasedEvent);
 	dispatcher.Dispatch<Events::MouseMovedEvent>(Input::onMouseMovedEvent);
 
-	for (auto it = layerHandler.end(); it != layerHandler.begin();) {
-		(*--it)->onEvent(e);
-		if (e.isHandled()) {
+	for (auto& layer : layerHandler) {
+		layer->onEvent(e);
+		if(e.isHandled())
 			break;
-		}
 	}
 }
 

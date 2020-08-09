@@ -1,13 +1,11 @@
-// Library
-#include "GL/glew.h"
-#include "GLFW/glfw3.h"
-
 // Local
 #include "Window.h"
 #include "Logger.h"
 
 namespace Core
 {
+	class GraphicsContext;
+
 	class WindowsWindow : public Window
 	{
 		public:
@@ -34,6 +32,8 @@ namespace Core
 
 			GLFWwindow* window;
 			Logger logger;
+
+			GraphicsContext* context;
 
 			struct WindowData
 			{

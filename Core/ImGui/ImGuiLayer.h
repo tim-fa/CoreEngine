@@ -7,11 +7,13 @@
 
 // Local
 #include "Layers/Layer.h"
-#include "Application.h"
 #include "Events/Events.h"
+#include "Log/Logger.h"
 
 namespace Core
 {
+	class Application;
+
 	class ImGuiLayer : public Layer
 	{
 		public:
@@ -20,17 +22,11 @@ namespace Core
 
 			void onCreate() override;
 			void onDestroy() override;
-			void onUpdate() override;
-			void onEvent(Events::Event& e) override;
+			void onImGuiRender() override;
 
-			bool onMouseButtonPressedEvent(Events::MousePressedEvent& e);
-			bool onMouseButtonReleasedEvent(Events::MouseReleasedEvent& e);
-			bool onMouseScrolledEvent(Events::MouseScrolledEvent& e);
-			bool onMouseMovedEvent(Events::MouseMovedEvent& e);
-			bool onWindowResizedEvent(Events::ResizeWindowEvent& e);
-			bool onKeyTypedEvent(Events::KeyTypedEvent& e);
-			bool onKeyPressedEvent(Events::KeyPressedEvent& e);
-			bool onKeyReleasedEvent(Events::KeyReleasedEvent& e);
+			void begin();
+			void end();
+
 		private:
 			float time = 0;
 			Application& app;

@@ -4,8 +4,28 @@
 // Engine
 #include "EntryPoint.h"
 #include "Application.h"
-#include "Events/Events.h"
+#include "Layers/Layer.h"
 #include "ImGui/ImGuiLayer.h"
+
+#include "Log/Logger.h"
+
+#include "imgui.h"
+
+class ExampleLayer : public Core::Layer
+{
+	public:
+		ExampleLayer(std::string s)
+			: Layer(s)
+		{
+		}
+
+		void onImGuiRender() override
+		{
+			ImGui::Begin("Test");
+			ImGui::Text("Text");
+			ImGui::End();
+		}
+};
 
 class Sandbox : public Core::Application
 {
@@ -14,7 +34,9 @@ class Sandbox : public Core::Application
 		{
 			logger.e("test");
 			logger.i("Created Sandbox App!");
-			addLayer(new Core::ImGuiLayer(*this));
+
+			addLayer(new ExampleLayer("Layer 1"));
+
 		}
 
 		~Sandbox()

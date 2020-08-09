@@ -13,6 +13,7 @@
 #include "Events/Event.h"
 #include "Layers/Layer.h"
 #include "Layers/LayerHandler.h"
+#include "ImGui/ImGuiLayer.h"
 
 namespace Core
 {
@@ -36,6 +37,7 @@ namespace Core
 		private:
 			LayerHandler layerHandler;
 			std::unique_ptr<Window> window;
+			ImGuiLayer imGuiLayer;
 			bool running{true};
 	};
 

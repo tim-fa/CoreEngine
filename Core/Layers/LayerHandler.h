@@ -27,7 +27,7 @@ namespace Core
 
 		private:
 			std::vector<Layer*> layers;
-			std::vector<Layer*>::iterator layerInserter;
+			int firstLayerIdx;
 	};
 }
 

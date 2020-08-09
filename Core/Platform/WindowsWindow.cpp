@@ -2,12 +2,13 @@
 // Local
 #include "WindowsWindow.h"
 #include "Events.h"
+#include "Renderer/GraphicsContext.h"
+#include "Platform/OpenGL/OpenGLContext.h"
 
 static bool glfwInitialized = false;
 
 namespace Core
 {
-
 	Window* Window::create(const WindowProps& props)
 	{
 		return new WindowsWindow(props);
@@ -26,7 +27,7 @@ namespace Core
 	void WindowsWindow::onUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(window);
+		context->swapBuffers();
 	}
 
 	unsigned int WindowsWindow::getWidth()
@@ -61,6 +62,7 @@ namespace Core
 		data.width = props.width;
 		data.height = props.height;
 
+
 		logger.d("Creating new Window: '{}', {}x{}", data.title, data.width, data.height);
 		if (!glfwInitialized) {
 
@@ -76,14 +78,14 @@ namespace Core
 			glfwInitialized = true;
 		}
 		window = glfwCreateWindow(props.width, props.height, props.title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(window);
+
+		context = new OpenGLContext(window);
+		context->initialize();
+
 		glfwSetWindowUserPointer(window, &data);
 		setVSync(true);
 
-		if (glewInit()) {
-			logger.e("failed to initialize GLEW\n");
-			return;
-		}
+
 
 		// Set GLFW Callbacks
 		glfwSetWindowSizeCallback(window, [](GLFWwindow* window, int width, int height) {

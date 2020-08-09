@@ -10,6 +10,9 @@
 // Libraries
 #include <fmt/format.h>
 
+#define Assert(condition, msg) Assert_fmt(condition, msg, "")
+#define Assert_fmt(condition, msg, ...) fatal(condition, __FILE__, __FUNCTION__, __LINE__, std::string("{}\n") + msg, #condition, __VA_ARGS__)
+
 namespace Core
 {
 	class Logger
@@ -47,6 +50,15 @@ namespace Core
 			void d(const std::string& msg, Args ... args)
 			{
 				log(LogLevel::debug, fmt::format(msg, args...));
+			}
+
+			template<class ... Args>
+			void fatal(bool condition, const char* file, const char* function, int line, const std::string& msg, Args ... args)
+			{
+				if (!condition) {
+					e("********** Assertion failed! **********\nin file '{}':{}\nin function '{}'\n" + msg, file, line, function, args...);
+					exit(-1);
+				}
 			}
 
 			void setName(const std::string& name);
