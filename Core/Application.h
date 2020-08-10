@@ -15,6 +15,8 @@
 #include "Layers/LayerHandler.h"
 #include "ImGui/ImGuiLayer.h"
 
+#include "Renderer/Shader.h"
+
 namespace Core
 {
 	class Application
@@ -39,6 +41,11 @@ namespace Core
 			std::unique_ptr<Window> window;
 			ImGuiLayer imGuiLayer;
 			bool running{true};
+
+			unsigned int indexBuffer;
+			unsigned int vertexBuffer;
+			unsigned int vertexArray;
+			std::unique_ptr<Shader> shader;
 	};
 
 	// to be defined in client

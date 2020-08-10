@@ -11,13 +11,17 @@ namespace Core
 		: windowHandle(windowHandle)
 		, logger("OpenGlContext")
 	{
-		logger.Assert(windowHandle, "Invalid windowHandle!");
+		ASSERT(windowHandle, "Invalid windowHandle!");
 	}
 
 	void OpenGLContext::initialize()
 	{
 		glfwMakeContextCurrent(windowHandle);
-		logger.Assert(glewInit() == GLEW_OK, "failed to initialize GLEW\n");
+		ASSERT(glewInit() == GLEW_OK, "failed to initialize GLEW");
+		logger.i("OpenGL Info:");
+		logger.i("Vendor: {}", glGetString(GL_VENDOR));
+		logger.i("Renderer: {}", glGetString(GL_RENDERER));
+		logger.i("Version: {}", glGetString(GL_VERSION));
 	}
 
 	void OpenGLContext::swapBuffers()

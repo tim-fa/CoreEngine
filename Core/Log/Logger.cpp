@@ -12,7 +12,6 @@
 // Local
 #include "Logger.h"
 
-
 static Core::Logger::LogLevel maxLoglevel = Core::Logger::LogLevel::debug;
 
 namespace Core
@@ -32,6 +31,8 @@ namespace Core
 				return "Warning";
 			case error:
 				return "Error";
+			case fatal:
+				return "Fatal";
 			case debug:
 				return "Debug";
 			default:
@@ -41,10 +42,11 @@ namespace Core
 
 	void Logger::log(Core::Logger::LogLevel level, const std::string& msg)
 	{
-		if(level > maxLoglevel)
+		if (level > maxLoglevel) {
 			return;
+		}
 
-		switch(level){
+		switch (level) {
 			case info:
 				std::cout << termcolor::green;
 				break;
@@ -52,6 +54,7 @@ namespace Core
 				std::cout << termcolor::yellow;
 				break;
 			case error:
+			case fatal:
 				std::cout << termcolor::red;
 				break;
 			case debug:

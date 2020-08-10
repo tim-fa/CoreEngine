@@ -17,8 +17,8 @@ namespace Core
 {
 	ImGuiLayer::ImGuiLayer(Application& app)
 		: Layer("ImGuiLayer")
-		, app(app)
 		, logger("ImGuiLayer")
+		, app(app)
 	{
 	}
 
@@ -37,6 +37,7 @@ namespace Core
 
 		ImGui_ImplGlfw_InitForOpenGL(app.getWindow().getGLFWWindow(), false);
 		ImGui_ImplOpenGL3_Init("#version 410");
+		logger.i("Layer created successfully");
 	}
 
 	void ImGuiLayer::onDestroy()

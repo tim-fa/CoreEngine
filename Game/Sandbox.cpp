@@ -32,9 +32,7 @@ class Sandbox : public Core::Application
 	public:
 		Sandbox()
 		{
-			logger.e("test");
 			logger.i("Created Sandbox App!");
-
 			addLayer(new ExampleLayer("Layer 1"));
 
 		}
