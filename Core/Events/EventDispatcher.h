@@ -19,7 +19,7 @@ namespace Core::Events
 			template<typename T>
 			void Dispatch(std::function<bool(T&)> func)
 			{
-				if ((__int32)m_Event.getType() & (__int32)T::getStaticType()) {
+				if ((int)m_Event.getType() & (int)T::getStaticType()) {
 					m_Event.m_Handled = func(*(T*)&m_Event);
 				}
 			}

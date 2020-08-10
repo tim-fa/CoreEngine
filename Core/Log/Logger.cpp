@@ -4,6 +4,7 @@
 
 // STL
 #include <string>
+#include <iomanip>
 
 // Library
 #include "termcolor/termcolor.hpp"
@@ -57,22 +58,10 @@ namespace Core
 				std::cout << termcolor::white;
 				break;
 		}
-		std::string message;
-		message = addPadding(name, 15);
-		message += addPadding("[" + getLogLevelStr(level) + "]", 15);
-		message += msg + "\n";
-		printf("%s", message.c_str());
-
+		std::cout << std::setw(20) << std::left << name;
+		std::cout << std::setw(10) << std::left << fmt::format("[{}]", getLogLevelStr(level));
+		std::cout << std::left << msg << std::endl;
 		std::cout << termcolor::reset;
-	}
-
-	std::string Logger::addPadding(const std::string& msg, int len)
-	{
-		std::string text = msg.substr(0, std::min(static_cast<int>(msg.length()), len));
-		for (int i = msg.length(); i < len; i++) {
-			text += " ";
-		}
-		return text;
 	}
 
 	void Logger::setName(const std::string& name)
