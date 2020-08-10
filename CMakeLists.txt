@@ -11,5 +11,5 @@ HunterGate(
 project(Engine)
 
 
-add_subdirectory(Core)
+add_subdirectory(Yugen)
 add_subdirectory(Game)

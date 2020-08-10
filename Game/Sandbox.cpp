@@ -11,7 +11,7 @@
 
 #include "imgui.h"
 
-class ExampleLayer : public Core::Layer
+class ExampleLayer : public Yugen::Layer
 {
 	public:
 		ExampleLayer(std::string s)
@@ -27,7 +27,7 @@ class ExampleLayer : public Core::Layer
 		}
 };
 
-class Sandbox : public Core::Application
+class Sandbox : public Yugen::Application
 {
 	public:
 		Sandbox()
@@ -42,7 +42,7 @@ class Sandbox : public Core::Application
 		}
 };
 
-std::shared_ptr<Core::Application> Core::createApplication()
+std::shared_ptr<Yugen::Application> Yugen::createApplication()
 {
 	return std::make_shared<Sandbox>();
 }
