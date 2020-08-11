@@ -8,7 +8,7 @@
 // Local
 #include "Layers/Layer.h"
 #include "Events/Events.h"
-#include "Log/Logger.h"
+#include "Log
 
 namespace Yugen
 {

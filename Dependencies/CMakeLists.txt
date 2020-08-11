@@ -10,10 +10,9 @@ cmake_minimum_required(VERSION 3.11)
 
 
 # pull:
-# git pull --recurse-submodules
+# git submodule update --recursive --remote
 
 add_subdirectory("imgui")
-add_subdirectory("termcolor")
 add_subdirectory("glfw")
 add_subdirectory("glad")
 add_subdirectory("fmt")
