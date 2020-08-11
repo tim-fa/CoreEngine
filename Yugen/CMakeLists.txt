@@ -22,9 +22,6 @@ find_package(glfw3 CONFIG REQUIRED)
 hunter_add_package(glew)
 find_package(glew CONFIG REQUIRED)
 
-hunter_add_package(imgui)
-find_package(imgui CONFIG REQUIRED)
-
 add_library(Engine STATIC ${SOURCE_FILES} Platform/OpenGL/OpenGLContext.h)
 target_include_directories(Engine PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -40,5 +37,5 @@ target_link_libraries(
 	glfw
 	glew::glew
 	fmt::fmt
-	imgui::imgui
+	imgui
 )
