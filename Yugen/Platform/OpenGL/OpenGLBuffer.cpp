@@ -3,7 +3,7 @@
 //
 
 // Library
-#include "GL/glew.h"
+#include "glad/glad.h"
 
 // Local
 #include "OpenGLBuffer.h"

@@ -11,17 +11,6 @@ file(
 	Renderer/*.cpp
 )
 
-cmake_policy(SET CMP0074 OLD)
-
-hunter_add_package(fmt)
-find_package(fmt CONFIG REQUIRED)
-
-hunter_add_package(glfw)
-find_package(glfw3 CONFIG REQUIRED)
-
-hunter_add_package(glew)
-find_package(glew CONFIG REQUIRED)
-
 add_library(Engine STATIC ${SOURCE_FILES} Platform/OpenGL/OpenGLContext.h)
 target_include_directories(Engine PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -35,7 +24,7 @@ target_link_libraries(
 	Log
 	Maths
 	glfw
-	glew::glew
-	fmt::fmt
+	glad
+	fmt
 	imgui
 )

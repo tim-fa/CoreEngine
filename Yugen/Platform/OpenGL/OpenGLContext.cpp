@@ -1,5 +1,5 @@
 // Library
-#include "GL/glew.h"
+#include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
 // Local
@@ -17,7 +17,12 @@ namespace Yugen
 	void OpenGLContext::initialize()
 	{
 		glfwMakeContextCurrent(windowHandle);
-		ASSERT(glewInit() == GLEW_OK, "failed to initialize GLEW");
+
+		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+		{
+			logger.f("Failed to initialize OpenGL context");
+		}
+
 		logger.i("OpenGL Info:");
 		logger.i("Vendor: {}", glGetString(GL_VENDOR));
 		logger.i("Renderer: {}", glGetString(GL_RENDERER));

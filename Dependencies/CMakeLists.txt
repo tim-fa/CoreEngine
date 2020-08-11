@@ -9,3 +9,7 @@ cmake_minimum_required(VERSION 3.11)
 #	git commit -m "Add googletest"
 
 add_subdirectory("imgui")
+add_subdirectory("termcolor")
+add_subdirectory("glfw")
+add_subdirectory("glad")
+add_subdirectory("fmt")
