@@ -7,6 +7,3 @@
 [submodule "Dependencies/imgui/imgui"]
 	path = Dependencies/imgui/imgui
 	url = https://github.com/ocornut/imgui.git
-[submodule "Dependencies/Utility"]
-	path = Dependencies/Utility
-	url = https://github.com/tim-fa/Utility.git
