@@ -7,3 +7,6 @@
 [submodule "Dependencies/glfw"]
 	path = Dependencies/glfw
 	url = https://github.com/glfw/glfw.git
+[submodule "Dependencies/imgui/imgui"]
+	path = Dependencies/imgui/imgui
+	url = https://github.com/ocornut/imgui.git
