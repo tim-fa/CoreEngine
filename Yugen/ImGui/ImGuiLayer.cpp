@@ -11,7 +11,6 @@
 #include "Macros.h"
 #include "ImGuiLayer.h"
 #include "Application.h"
-#include "Input/Keycodes.h"
 
 namespace Yugen
 {
@@ -34,8 +33,16 @@ namespace Yugen
 
 		ImGuiIO& io = ImGui::GetIO();
 		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 
-		ImGui_ImplGlfw_InitForOpenGL(app.getWindow().getGLFWWindow(), false);
+		ImGuiStyle& style = ImGui::GetStyle();
+		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
+			style.WindowBorderSize = 0.0;
+			style.Colors[ImGuiCol_WindowBg].w = 1.0f;
+		}
+
+		ImGui_ImplGlfw_InitForOpenGL(app.getWindow().getGLFWWindow(), true);
 		ImGui_ImplOpenGL3_Init("#version 410");
 		logger.i("Layer created successfully");
 	}
@@ -43,7 +50,7 @@ namespace Yugen
 	void ImGuiLayer::onDestroy()
 	{
 		ImGui_ImplOpenGL3_Shutdown();
-		ImGui_ImplGlfw_NewFrame();
+		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
 	}
 
@@ -65,7 +72,17 @@ namespace Yugen
 
 	void ImGuiLayer::end()
 	{
+		ImGuiIO& io = ImGui::GetIO();
+		io.DisplaySize = ImVec2(app.getWindow().getWidth(), app.getWindow().getHeight());
+
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+		GLFWwindow* backup_current_context = glfwGetCurrentContext();
+		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
+			ImGui::UpdatePlatformWindows();
+			ImGui::RenderPlatformWindowsDefault();
+			glfwMakeContextCurrent(backup_current_context);
+		}
 	}
 }
