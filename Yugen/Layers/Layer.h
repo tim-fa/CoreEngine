@@ -5,7 +5,8 @@
 #ifndef LAYER_H
 #define LAYER_H
 
-#include "Event.h"
+// Local
+#include "Events/Event.h"
 
 namespace Yugen
 {

@@ -9,16 +9,14 @@ file(
 	ImGui/*.cpp
 	Input/*.cpp
 	Renderer/*.cpp
+	Events/*.cpp
 )
 
 add_library(Engine STATIC ${SOURCE_FILES} Platform/OpenGL/OpenGLContext.h)
 target_include_directories(Engine PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-add_subdirectory(Events)
-
 target_link_libraries(
 	Engine PUBLIC
-	Events
 	Log
 	Maths
 	glfw

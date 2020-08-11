@@ -1,7 +1,7 @@
 
 // Local
 #include "WindowsWindow.h"
-#include "Events.h"
+#include "Events/Events.h"
 #include "Renderer/GraphicsContext.h"
 #include "Platform/OpenGL/OpenGLContext.h"
 

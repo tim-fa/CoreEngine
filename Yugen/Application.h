@@ -45,7 +45,7 @@ namespace Yugen
 			ImGuiLayer imGuiLayer;
 			bool running{true};
 
-			unsigned int vertexArray;
+			unsigned int vertexArray{};
 			std::unique_ptr<Shader> shader;
 			std::shared_ptr<VertexBuffer> vertexBuffer;
 			std::shared_ptr<IndexBuffer> indexBuffer;

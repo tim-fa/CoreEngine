@@ -19,7 +19,7 @@ namespace Yugen
 	class ImGuiLayer : public Layer
 	{
 		public:
-			ImGuiLayer(Application& app);
+			explicit ImGuiLayer(Application& app);
 			~ImGuiLayer() override;
 
 			void onCreate() override;

@@ -4,12 +4,6 @@
 // Engine
 #include "EntryPoint.h"
 #include "Application.h"
-#include "Layers/Layer.h"
-#include "ImGui/ImGuiLayer.h"
-
-// Library
-#include "Log/Logger.h"
-
 #include "imgui.h"
 
 class ExampleLayer : public Yugen::Layer
