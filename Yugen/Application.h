@@ -7,9 +7,11 @@
 // STL
 #include <memory>
 
+// Library
+#include "Log/Logger.h"
+
 // Local
 #include "Platform/Window.h"
-#include "Logger.h"
 #include "Events/Event.h"
 #include "Layers/Layer.h"
 #include "Layers/LayerHandler.h"

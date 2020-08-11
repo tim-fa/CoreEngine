@@ -1,9 +1,9 @@
-[submodule "Dependencies/fmt"]
-	path = Dependencies/fmt
-	url = https://github.com/fmtlib/fmt.git
 [submodule "Dependencies/glfw"]
 	path = Dependencies/glfw
 	url = https://github.com/glfw/glfw.git
 [submodule "Dependencies/imgui/imgui"]
 	path = Dependencies/imgui/imgui
 	url = https://github.com/ocornut/imgui.git
+[submodule "Dependencies/Utility"]
+	path = Dependencies/Utility
+	url = https://github.com/tim-fa/Utility.git

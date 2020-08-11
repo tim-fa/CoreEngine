@@ -8,9 +8,11 @@
 // STL
 #include <string>
 
+// Library
+#include "Log/Logger.h"
+
 // Local
 #include "Macros.h"
-#include "Log/Logger.h"
 
 namespace Yugen
 {

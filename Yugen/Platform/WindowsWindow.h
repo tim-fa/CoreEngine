@@ -1,6 +1,8 @@
+// Library
+#include "Log/Logger.h"
+
 // Local
 #include "Window.h"
-#include "Logger.h"
 
 namespace Yugen
 {

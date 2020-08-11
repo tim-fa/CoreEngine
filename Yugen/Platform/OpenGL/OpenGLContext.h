@@ -5,9 +5,11 @@
 #ifndef ENGINE_OPENGLCONTEXT_H
 #define ENGINE_OPENGLCONTEXT_H
 
+// Library
+#include "Log/Logger.h"
+
 // Local
 #include "Renderer/GraphicsContext.h"
-#include "Log/Logger.h"
 
 class GLFWwindow;
 

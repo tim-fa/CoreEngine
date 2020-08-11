@@ -2,10 +2,12 @@
 // Created by Tim on 10.08.2020.
 //
 
+// Library
+#include "Log/Logger.h"
+
 // Local
 #include "Buffer.h"
 #include "Renderer.h"
-#include "Log/Logger.h"
 #include "Platform/OpenGL/OpenGLBuffer.h"
 
 namespace Yugen

@@ -5,10 +5,12 @@
 #ifndef ENGINE_IMGUILAYER_H
 #define ENGINE_IMGUILAYER_H
 
+// Library
+#include "Log/Logger.h"
+
 // Local
 #include "Layers/Layer.h"
 #include "Events/Events.h"
-#include "Log
 
 namespace Yugen
 {
