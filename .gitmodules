@@ -4,3 +4,6 @@
 [submodule "Dependencies/termcolor"]
 	path = Dependencies/termcolor
 	url = https://github.com/ikalnytskyi/termcolor.git
+[submodule "Dependencies/fmt"]
+	path = Dependencies/fmt
+	url = https://github.com/fmtlib/fmt.git
