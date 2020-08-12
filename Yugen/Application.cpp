@@ -78,6 +78,8 @@ void Yugen::Application::run()
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		shader->bind();
+		vertexArray->bind();
+		glDrawElements(GL_TRIANGLES, vertexArray->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
 
 		for (auto& layer : layerHandler) {
 			layer->onUpdate();
