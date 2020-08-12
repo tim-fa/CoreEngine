@@ -9,7 +9,7 @@
 class ExampleLayer : public Yugen::Layer
 {
 	public:
-		ExampleLayer(std::string s)
+		explicit ExampleLayer(std::string s)
 			: Layer(s)
 		{
 		}
@@ -32,9 +32,8 @@ class Sandbox : public Yugen::Application
 
 		}
 
-		~Sandbox()
-		{
-		}
+		~Sandbox() override
+		= default;
 };
 
 std::shared_ptr<Yugen::Application> Yugen::createApplication()
