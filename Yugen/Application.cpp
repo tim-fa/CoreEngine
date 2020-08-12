@@ -20,8 +20,7 @@ Yugen::Application::Application()
 
 	addOverlay(&imGuiLayer);
 
-	glGenVertexArrays(1, &vertexArray);
-	glBindVertexArray(vertexArray);
+	vertexArray.reset(VertexArray::create());
 
 	float vertices[3 * 3] = {
 		-.5f, -.5f, 0,
@@ -31,11 +30,11 @@ Yugen::Application::Application()
 
 	vertexBuffer.reset(VertexBuffer::create(vertices, sizeof(vertices)));
 
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+	vertexArray->addVertexBuffer(vertexBuffer);
 
 	uint32 indices[3] = {0, 1, 2};
 	indexBuffer.reset(IndexBuffer::create(indices, 3));
+	vertexArray->setIndexBuffer(indexBuffer);
 
 	std::string vertexSrc = R"(
 #version 330 core
@@ -79,9 +78,6 @@ void Yugen::Application::run()
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		shader->bind();
-
-		glBindVertexArray(vertexArray);
-		glDrawElements(GL_TRIANGLES, indexBuffer->getCount(), GL_UNSIGNED_INT, nullptr);
 
 		for (auto& layer : layerHandler) {
 			layer->onUpdate();
@@ -133,5 +129,6 @@ void Yugen::Application::addOverlay(Yugen::Layer* overlay)
 
 Yugen::Window& Yugen::Application::getWindow()
 {
+	
 	return *window;
 }

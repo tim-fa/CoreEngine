@@ -19,6 +19,7 @@
 
 #include "Renderer/Shader.h"
 #include "Renderer/Buffer.h"
+#include "Renderer/VertexArray.h"
 
 namespace Yugen
 {
@@ -45,8 +46,8 @@ namespace Yugen
 			ImGuiLayer imGuiLayer;
 			bool running{true};
 
-			unsigned int vertexArray{};
 			std::unique_ptr<Shader> shader;
+			std::shared_ptr<VertexArray> vertexArray;
 			std::shared_ptr<VertexBuffer> vertexBuffer;
 			std::shared_ptr<IndexBuffer> indexBuffer;
 	};

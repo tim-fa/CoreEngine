@@ -18,8 +18,8 @@ namespace Yugen
 	class OpenGLContext : public GraphicsContext
 	{
 		public:
-			explicit OpenGLContext(GLFWwindow* windowHandle);
 
+			explicit OpenGLContext(GLFWwindow* windowHandle);
 			void initialize() override;
 			void swapBuffers() override;
 
