@@ -32,6 +32,16 @@ namespace Yugen::Platform::OpenGL
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 
+	void OpenGLVertexBuffer::setLayout(const Render::BufferLayout& layout)
+	{
+		this->layout = layout;
+	}
+
+	Render::BufferLayout& OpenGLVertexBuffer::getBufferLayout()
+	{
+		return layout;
+	}
+
 
 	// Index Buffer
 

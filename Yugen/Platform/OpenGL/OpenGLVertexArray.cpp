@@ -30,16 +30,40 @@ namespace Yugen::Platform::OpenGL
 		glBindVertexArray(0);
 	}
 
+	static GLenum shaderDataTypeToGlBaseType(Render::ShaderDataType type)
+	{
+		switch (type) {
+			case Render::ShaderDataType::Int:
+			case Render::ShaderDataType::Int2:
+			case Render::ShaderDataType::Int3:
+			case Render::ShaderDataType::Int4:
+				return GL_INT;
+			case Render::ShaderDataType::Float:
+			case Render::ShaderDataType::Float2:
+			case Render::ShaderDataType::Float3:
+			case Render::ShaderDataType::Float4:
+			case Render::ShaderDataType::Mat3:
+			case Render::ShaderDataType::Mat4:
+				return GL_FLOAT;
+			default:
+				return 0;
+		}
+	}
+
 	void OpenGLVertexArray::addVertexBuffer(const std::shared_ptr<Render::VertexBuffer>& buffer)
 	{
 		glBindVertexArray(rendererId);
 		buffer->bind();
 
 		uint32 index = 0;
-		// TODO:	const auto& layout = buffer->getLayout();
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+		auto& layout = buffer->getBufferLayout();
+		for (const auto& element : layout) {
 
+			glEnableVertexAttribArray(index);
+			glVertexAttribPointer(index, element.getComponentCount(), shaderDataTypeToGlBaseType(element.type), element.normalized ? GL_TRUE : GL_FALSE,
+				layout.getStride(), (const void*)element.offset);
+			index++;
+		}
 		vertexBuffers.emplace_back(buffer);
 	}
 

@@ -2,13 +2,12 @@
 // Created by Tim on 06.08.2020.
 //
 
-// Local
+// Library
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
+// Local
 #include "Application.h"
-
-#include <memory>
 #include "Input/Input.h"
 
 namespace Yugen
@@ -26,13 +25,19 @@ namespace Yugen
 
 		vertexArray.reset(Render::VertexArray::create());
 
-		float vertices[3 * 3] = {
-			-.5f, -.5f, 0,
-			.5f, -.5f, 0,
-			.0f, .5f, 0,
+		float vertices[7 * 3] = {
+			-.5f, -.5f, 0, 1.f, 0.f, 1.f, 1.f,
+			.5f, -.5f, 0, 1.f, 0.f, 1.f, 1.f,
+			.0f, .5f, 0, 1.f, 0.f, 1.f, 1.f,
 		};
 
 		vertexBuffer.reset(Render::VertexBuffer::create(vertices, sizeof(vertices)));
+
+		Render::BufferLayout layout = {
+			{Render::ShaderDataType::Float3, "a_Position"},
+			{Render::ShaderDataType::Float4, "a_Color"},
+		};
+		vertexBuffer->setLayout(layout);
 
 		vertexArray->addVertexBuffer(vertexBuffer);
 
@@ -44,6 +49,7 @@ namespace Yugen
 #version 330 core
 
 layout(location = 0) in vec3 a_Position;
+layout(location = 1) in vec4 a_Color;
 
 out vec3 v_Position;
 

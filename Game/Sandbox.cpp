@@ -6,9 +6,7 @@
 #include "Application.h"
 #include "imgui.h"
 
-#include "ECS/EcsMananger.h"
-
-	class ExampleLayer : public Yugen::Layers::Layer
+class ExampleLayer : public Yugen::Layers::Layer
 {
 	public:
 		explicit ExampleLayer(std::string s)
@@ -31,7 +29,6 @@ class Sandbox : public Yugen::Application
 		{
 			logger.i("Created Sandbox App!");
 			addLayer(new ExampleLayer("Layer 1"));
-
 		}
 
 		~Sandbox() override

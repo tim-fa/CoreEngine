@@ -27,8 +27,8 @@ namespace Yugen::Platform::OpenGL
 			void addVertexBuffer(const std::shared_ptr<Render::VertexBuffer>& buffer) override;
 			void setIndexBuffer(const std::shared_ptr<Render::IndexBuffer>& buffer) override;
 
-			[[nodiscard]] const std::vector<std::shared_ptr<Render::VertexBuffer>>& getVertexBuffers() const override;
-			[[nodiscard]] const std::shared_ptr<Render::IndexBuffer>& getIndexBuffer() const override;
+			const std::vector<std::shared_ptr<Render::VertexBuffer>>& getVertexBuffers() const override;
+			const std::shared_ptr<Render::IndexBuffer>& getIndexBuffer() const override;
 
 			static VertexArray* create();
 

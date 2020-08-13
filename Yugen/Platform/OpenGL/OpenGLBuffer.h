@@ -21,8 +21,12 @@ namespace Yugen::Platform::OpenGL
 			void bind() const override;
 			void unbind() const override;
 
+			void setLayout(const Render::BufferLayout& layout) override;
+			Render::BufferLayout& getBufferLayout() override;
+
 		private:
 			uint32 rendererId{};
+			Render::BufferLayout layout;
 	};
 
 	class OpenGLIndexBuffer : public Render::IndexBuffer
