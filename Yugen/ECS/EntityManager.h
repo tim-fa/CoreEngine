@@ -21,7 +21,7 @@ using Signature = std::bitset<MAX_COMPONENTS>;
 
 namespace Yugen::ECS::internal
 {
-	static Logger logger("EntityComponentSystem");
+	static Log::Logger logger("EntityComponentSystem");
 
 	class EntityManager
 	{

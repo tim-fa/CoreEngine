@@ -25,7 +25,7 @@ namespace Yugen::Platform::OpenGL
 			void swapBuffers() override;
 
 		private:
-			Logger logger;
+			Log::Logger logger;
 			GLFWwindow* windowHandle;
 	};
 }

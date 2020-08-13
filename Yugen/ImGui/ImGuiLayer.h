@@ -31,7 +31,7 @@ namespace Yugen
 		private:
 			float time = 0;
 			Application& app;
-			Logger logger;
+			Log::Logger logger;
 	};
 }
 

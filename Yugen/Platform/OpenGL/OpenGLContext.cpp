@@ -11,7 +11,9 @@ namespace Yugen::Platform::OpenGL
 		: windowHandle(windowHandle)
 		, logger("OpenGlContext")
 	{
-		ASSERT(windowHandle, "Invalid windowHandle!");
+		if(!windowHandle) {
+			logger.f("Invalid windowHandle!");
+		}
 	}
 
 	void OpenGLContext::initialize()

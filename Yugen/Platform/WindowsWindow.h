@@ -9,7 +9,6 @@
 
 namespace Yugen::Platform
 {
-	using namespace Render;
 	class WindowsWindow : public Window
 	{
 		public:
@@ -35,9 +34,9 @@ namespace Yugen::Platform
 			virtual void shutdown();
 
 			GLFWwindow* window;
-			Logger logger;
+			Log::Logger logger;
 
-			GraphicsContext* context;
+			Render::GraphicsContext* context;
 
 			struct WindowData
 			{

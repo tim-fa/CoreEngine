@@ -27,7 +27,7 @@ namespace Yugen::Render
 
 		private:
 			uint32 rendererId{0};
-			Logger logger;
+			Log::Logger logger;
 	};
 };
 

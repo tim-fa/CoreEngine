@@ -39,7 +39,7 @@ namespace Yugen
 			Platform::Window& getWindow();
 
 		protected:
-			Logger logger;
+			Log::Logger logger;
 
 		private:
 			Layers::LayerHandler layerHandler;
