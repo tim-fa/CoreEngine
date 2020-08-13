@@ -1,3 +1,4 @@
+#pragma once
 //
 // Created by Tim on 07.08.2020.
 //
@@ -8,7 +9,7 @@
 // Local
 #include "Events/Event.h"
 
-namespace Yugen
+namespace Yugen::Layers
 {
 	class Layer
 	{

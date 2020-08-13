@@ -9,7 +9,7 @@
 #include "LayerHandler.h"
 #include "Layer.h"
 
-namespace Yugen
+namespace Yugen::Layers
 {
 	LayerHandler::LayerHandler()
 	{

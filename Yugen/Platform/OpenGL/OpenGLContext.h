@@ -1,3 +1,4 @@
+#pragma once
 //
 // Created by Tim on 09.08.2020.
 //
@@ -13,9 +14,9 @@
 
 class GLFWwindow;
 
-namespace Yugen
+namespace Yugen::Platform::OpenGL
 {
-	class OpenGLContext : public GraphicsContext
+	class OpenGLContext : public Render::GraphicsContext
 	{
 		public:
 

@@ -3,8 +3,7 @@
 // Local
 #include "Event.h"
 
-namespace Yugen {
-    namespace Events {
+namespace Yugen::Events {
 
         class IEventListener {
         public:
@@ -12,4 +11,3 @@ namespace Yugen {
         };
 
     }
-}

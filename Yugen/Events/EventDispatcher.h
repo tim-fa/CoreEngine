@@ -5,7 +5,6 @@
 
 namespace Yugen::Events
 {
-
 	class EventDispatcher
 	{
 		private:

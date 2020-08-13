@@ -8,7 +8,7 @@
 // Local
 #include "OpenGLBuffer.h"
 
-namespace Yugen
+namespace Yugen::Platform::OpenGL
 {
 	OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32 size)
 	{

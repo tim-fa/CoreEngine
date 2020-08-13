@@ -5,9 +5,7 @@
 
 #define BIT(x) (1u << static_cast<unsigned int>(x))
 
-namespace Yugen
-{
-	namespace Events
+namespace Yugen::Events
 	{
 
 #undef MOUSE_PRESSED
@@ -58,4 +56,3 @@ namespace Yugen
 				static std::string typeToString(EventType type);
 		};
 	}
-}

@@ -1,3 +1,4 @@
+#pragma once
 //
 // Created by Tim on 06.08.2020.
 //
@@ -32,24 +33,24 @@ namespace Yugen
 			void run();
 			void onEvent(Events::Event& e);
 
-			void addLayer(Layer* layer);
-			void addOverlay(Layer* overlay);
+			void addLayer(Layers::Layer* layer);
+			void addOverlay(Layers::Layer* overlay);
 
-			Window& getWindow();
+			Platform::Window& getWindow();
 
 		protected:
 			Logger logger;
 
 		private:
-			LayerHandler layerHandler;
-			std::unique_ptr<Window> window;
+			Layers::LayerHandler layerHandler;
+			std::unique_ptr<Platform::Window> window;
 			ImGuiLayer imGuiLayer;
 			bool running{true};
 
-			std::unique_ptr<Shader> shader;
-			std::shared_ptr<VertexArray> vertexArray;
-			std::shared_ptr<VertexBuffer> vertexBuffer;
-			std::shared_ptr<IndexBuffer> indexBuffer;
+			std::unique_ptr<Render::Shader> shader;
+			std::shared_ptr<Render::VertexArray> vertexArray;
+			std::shared_ptr<Render::VertexBuffer> vertexBuffer;
+			std::shared_ptr<Render::IndexBuffer> indexBuffer;
 	};
 
 	// to be defined in client

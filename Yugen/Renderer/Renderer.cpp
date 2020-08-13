@@ -6,7 +6,7 @@
 // Local
 #include "Renderer.h"
 
-namespace Yugen
+namespace Yugen::Render
 {
 	RendererAPI Renderer::rendererApi = RendererAPI::OpenGL;
 

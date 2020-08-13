@@ -1,13 +1,15 @@
+#pragma once
+
 // Library
 #include "Log/Logger.h"
 
 // Local
 #include "Window.h"
+#include "Renderer/GraphicsContext.h"
 
-namespace Yugen
+namespace Yugen::Platform
 {
-	class GraphicsContext;
-
+	using namespace Render;
 	class WindowsWindow : public Window
 	{
 		public:

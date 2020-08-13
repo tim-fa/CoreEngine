@@ -1,3 +1,4 @@
+#pragma once
 //
 // Created by tfa on 12.08.20.
 //
@@ -12,31 +13,30 @@
 #include "Renderer/VertexArray.h"
 #include "Macros.h"
 
-namespace Yugen
+namespace Yugen::Platform::OpenGL
 {
+	class OpenGLVertexArray : public Render::VertexArray
+	{
+		public:
+			OpenGLVertexArray();
+			~OpenGLVertexArray() override;
 
-class OpenGLVertexArray : public VertexArray
-{
-	public:
-		OpenGLVertexArray();
-		virtual ~OpenGLVertexArray();
+			void bind() override;
+			void unbind() override;
 
-		void bind() override;
-		void unbind() override;
+			void addVertexBuffer(const std::shared_ptr<Render::VertexBuffer>& buffer) override;
+			void setIndexBuffer(const std::shared_ptr<Render::IndexBuffer>& buffer) override;
 
-		void addVertexBuffer(const std::shared_ptr<VertexBuffer>& buffer) override;
-		void setIndexBuffer(const std::shared_ptr<IndexBuffer>& buffer) override;
+			[[nodiscard]] const std::vector<std::shared_ptr<Render::VertexBuffer>>& getVertexBuffers() const override;
+			[[nodiscard]] const std::shared_ptr<Render::IndexBuffer>& getIndexBuffer() const override;
 
-		const std::vector<std::shared_ptr<VertexBuffer>>& getVertexBuffers() const override;
-		const std::shared_ptr<IndexBuffer>& getIndexBuffer() const override;
+			static VertexArray* create();
 
-		static VertexArray* create();
-
-	private:
-		uint32 rendererId{};
-		std::vector<std::shared_ptr<VertexBuffer>> vertexBuffers;
-		std::shared_ptr<IndexBuffer> indexBuffer;
-};
+		private:
+			uint32 rendererId{};
+			std::vector<std::shared_ptr<Render::VertexBuffer>> vertexBuffers;
+			std::shared_ptr<Render::IndexBuffer> indexBuffer;
+	};
 }
 
 #endif //ENGINE_OPENGLVERTEXARRAY_H

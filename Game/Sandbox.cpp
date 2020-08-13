@@ -6,7 +6,9 @@
 #include "Application.h"
 #include "imgui.h"
 
-class ExampleLayer : public Yugen::Layer
+#include "ECS/EcsMananger.h"
+
+	class ExampleLayer : public Yugen::Layers::Layer
 {
 	public:
 		explicit ExampleLayer(std::string s)

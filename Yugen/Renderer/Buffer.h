@@ -8,7 +8,7 @@
 // Local
 #include "Macros.h"
 
-namespace Yugen
+namespace Yugen::Render
 {
 	class VertexBuffer
 	{

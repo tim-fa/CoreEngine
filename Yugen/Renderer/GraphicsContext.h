@@ -5,7 +5,7 @@
 #ifndef ENGINE_GRAPHICSCONTEXT_H
 #define ENGINE_GRAPHICSCONTEXT_H
 
-namespace Yugen
+namespace Yugen::Render
 {
 	class GraphicsContext
 	{

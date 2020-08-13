@@ -1,3 +1,4 @@
+#pragma once
 //
 // Created by Tim on 07.08.2020.
 //
@@ -8,9 +9,10 @@
 // STL
 #include <vector>
 
-namespace Yugen
+namespace Yugen::Layers
 {
 	class Layer;
+
 	class LayerHandler
 	{
 		public:

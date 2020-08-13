@@ -7,8 +7,10 @@
 
 static bool glfwInitialized = false;
 
-namespace Yugen
+namespace Yugen::Platform
 {
+	using namespace OpenGL;
+
 	Window* Window::create(const WindowProps& props)
 	{
 		return new WindowsWindow(props);

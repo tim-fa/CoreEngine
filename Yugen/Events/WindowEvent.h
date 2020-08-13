@@ -6,59 +6,55 @@
 // Local
 #include "Event.h"
 
-namespace Yugen
+namespace Yugen::Events
 {
-	namespace Events
+	class ResizeWindowEvent : public Event
 	{
+		protected:
+			float width;
+			float height;
+		public:
+			ResizeWindowEvent(unsigned int width, unsigned int height);
 
-		class ResizeWindowEvent : public Event
-		{
-			protected:
-				float width;
-				float height;
-			public:
-				ResizeWindowEvent(unsigned int width, unsigned int height);
+			inline const unsigned int getWidth() const
+			{
+				return width;
+			}
 
-				inline const unsigned int getWidth() const
-				{
-					return width;
-				}
+			inline const unsigned int getHeight() const
+			{
+				return height;
+			}
 
-				inline const unsigned int getHeight() const
-				{
-					return height;
-				}
+			inline std::string toString() const override
+			{
+				return fmt::format("ResizeWindowEvent: {}, {}", width, height);
+			}
 
-				inline std::string toString() const override
-				{
-					return fmt::format("ResizeWindowEvent: {}, {}", width, height);
-				}
+		public:
+			inline static EventType getStaticType()
+			{
+				return Event::EventType::WindowResize;
+			}
+	};
 
-			public:
-				inline static EventType getStaticType()
-				{
-					return Event::EventType::WindowResize;
-				}
-		};
-
-		class CloseWindowEvent : public Event
-		{
-			public:
-				CloseWindowEvent()
+	class CloseWindowEvent : public Event
+	{
+		public:
+			CloseWindowEvent()
 				: Event(getStaticType())
-				{
-				}
+			{
+			}
 
-				inline std::string toString() const override
-				{
-					return "CloseWindowEvent";
-				}
+			inline std::string toString() const override
+			{
+				return "CloseWindowEvent";
+			}
 
-			public:
-				inline static EventType getStaticType()
-				{
-					return Event::EventType::WindowClose;
-				}
-		};
-	}
+		public:
+			inline static EventType getStaticType()
+			{
+				return Event::EventType::WindowClose;
+			}
+	};
 }

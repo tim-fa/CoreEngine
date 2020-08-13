@@ -10,8 +10,10 @@
 #include "Renderer.h"
 #include "Platform/OpenGL/OpenGLBuffer.h"
 
-namespace Yugen
+namespace Yugen::Render
 {
+	using namespace Platform::OpenGL;
+
 	VertexBuffer* VertexBuffer::create(float* vertices, unsigned int size)
 	{
 		switch (Renderer::getAPI()) {

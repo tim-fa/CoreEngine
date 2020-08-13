@@ -11,32 +11,36 @@
 #include <memory>
 #include "Input/Input.h"
 
-Yugen::Application::Application()
-	: logger("Application")
-	, imGuiLayer(*this)
+namespace Yugen
 {
-	window = std::unique_ptr<Window>(Window::create());
-	window->setEventCallback(std::bind(&Application::onEvent, this, std::placeholders::_1));
+	using namespace Input;
 
-	addOverlay(&imGuiLayer);
+	Application::Application()
+		: logger("Application")
+		, imGuiLayer(*this)
+	{
+		window = std::unique_ptr<Platform::Window>(Platform::Window::create());
+		window->setEventCallback(std::bind(&Application::onEvent, this, std::placeholders::_1));
 
-	vertexArray.reset(VertexArray::create());
+		addOverlay(&imGuiLayer);
 
-	float vertices[3 * 3] = {
-		-.5f, -.5f, 0,
-		.5f, -.5f, 0,
-		.0f, .5f, 0,
-	};
+		vertexArray.reset(Render::VertexArray::create());
 
-	vertexBuffer.reset(VertexBuffer::create(vertices, sizeof(vertices)));
+		float vertices[3 * 3] = {
+			-.5f, -.5f, 0,
+			.5f, -.5f, 0,
+			.0f, .5f, 0,
+		};
 
-	vertexArray->addVertexBuffer(vertexBuffer);
+		vertexBuffer.reset(Render::VertexBuffer::create(vertices, sizeof(vertices)));
 
-	uint32 indices[3] = {0, 1, 2};
-	indexBuffer.reset(IndexBuffer::create(indices, 3));
-	vertexArray->setIndexBuffer(indexBuffer);
+		vertexArray->addVertexBuffer(vertexBuffer);
 
-	std::string vertexSrc = R"(
+		uint32 indices[3] = {0, 1, 2};
+		indexBuffer.reset(Render::IndexBuffer::create(indices, 3));
+		vertexArray->setIndexBuffer(indexBuffer);
+
+		std::string vertexSrc = R"(
 #version 330 core
 
 layout(location = 0) in vec3 a_Position;
@@ -51,7 +55,7 @@ void main()
 
 )";
 
-	std::string fragmentSrc = R"(
+		std::string fragmentSrc = R"(
 #version 330 core
 
 layout(location = 0) out vec4 color;
@@ -65,72 +69,72 @@ void main()
 
 )";
 
-	shader = std::make_unique<Shader>(vertexSrc, fragmentSrc);
-}
-
-Yugen::Application::~Application()
-= default;
-
-void Yugen::Application::run()
-{
-	while (running) {
-		glClearColor(.2f, 0.2f, .2f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
-
-		shader->bind();
-		vertexArray->bind();
-		glDrawElements(GL_TRIANGLES, vertexArray->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
-
-		for (auto& layer : layerHandler) {
-			layer->onUpdate();
-		}
-
-		imGuiLayer.begin();
-		for (auto& layer : layerHandler) {
-			layer->onImGuiRender();
-		}
-		imGuiLayer.end();
-		window->onUpdate();
+		shader = std::make_unique<Render::Shader>(vertexSrc, fragmentSrc);
 	}
-}
 
-void Yugen::Application::onEvent(Yugen::Events::Event& e)
-{
-	Events::EventDispatcher dispatcher(e);
+	Application::~Application()
+	= default;
 
-	dispatcher.Dispatch<Events::CloseWindowEvent>([&](Events::Event&) -> bool {
-		running = false;
-		return true;
-	});
+	void Application::run()
+	{
+		while (running) {
+			glClearColor(.2f, 0.2f, .2f, 1.0f);
+			glClear(GL_COLOR_BUFFER_BIT);
 
-	dispatcher.Dispatch<Events::KeyPressedEvent>(Input::onKeyPressedEvent);
-	dispatcher.Dispatch<Events::KeyReleasedEvent>(Input::onKeyReleasedEvent);
-	dispatcher.Dispatch<Events::MousePressedEvent>(Input::onMousePressedEvent);
-	dispatcher.Dispatch<Events::MouseReleasedEvent>(Input::onMouseReleasedEvent);
-	dispatcher.Dispatch<Events::MouseMovedEvent>(Input::onMouseMovedEvent);
+			shader->bind();
+			vertexArray->bind();
+			glDrawElements(GL_TRIANGLES, vertexArray->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
 
-	for (auto& layer : layerHandler) {
-		layer->onEvent(e);
-		if (e.isHandled()) {
-			break;
+			for (auto& layer : layerHandler) {
+				layer->onUpdate();
+			}
+
+			imGuiLayer.begin();
+			for (auto& layer : layerHandler) {
+				layer->onImGuiRender();
+			}
+			imGuiLayer.end();
+			window->onUpdate();
 		}
 	}
-}
 
-void Yugen::Application::addLayer(Yugen::Layer* layer)
-{
-	layerHandler.addLayer(layer);
-	layer->onCreate();
-}
+	void Application::onEvent(Events::Event& e)
+	{
+		Events::EventDispatcher dispatcher(e);
 
-void Yugen::Application::addOverlay(Yugen::Layer* overlay)
-{
-	layerHandler.addOverlay(overlay);
-	overlay->onCreate();
-}
+		dispatcher.Dispatch<Events::CloseWindowEvent>([&](Events::Event&) -> bool {
+			running = false;
+			return true;
+		});
 
-Yugen::Window& Yugen::Application::getWindow()
-{
-	
-	return *window;
+		dispatcher.Dispatch<Events::KeyPressedEvent>(InputHandler::onKeyPressedEvent);
+		dispatcher.Dispatch<Events::KeyReleasedEvent>(InputHandler::onKeyReleasedEvent);
+		dispatcher.Dispatch<Events::MousePressedEvent>(InputHandler::onMousePressedEvent);
+		dispatcher.Dispatch<Events::MouseReleasedEvent>(InputHandler::onMouseReleasedEvent);
+		dispatcher.Dispatch<Events::MouseMovedEvent>(InputHandler::onMouseMovedEvent);
+
+		for (auto& layer : layerHandler) {
+			layer->onEvent(e);
+			if (e.isHandled()) {
+				break;
+			}
+		}
+	}
+
+	void Application::addLayer(Layers::Layer* layer)
+	{
+		layerHandler.addLayer(layer);
+		layer->onCreate();
+	}
+
+	void Application::addOverlay(Layers::Layer* overlay)
+	{
+		layerHandler.addOverlay(overlay);
+		overlay->onCreate();
+	}
+
+	Platform::Window& Application::getWindow()
+	{
+		return *window;
+	}
 }

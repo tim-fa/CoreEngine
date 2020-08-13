@@ -6,7 +6,7 @@
 #include "Events/Event.h"
 #include "GLFW/glfw3.h"
 
-namespace Yugen
+namespace Yugen::Platform
 {
 	struct WindowProps
 	{

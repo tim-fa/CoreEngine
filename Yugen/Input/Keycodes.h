@@ -1,8 +1,8 @@
 #pragma once
 
-namespace Yugen
+namespace Yugen::Input
 {
-	enum class MouseButtonCode : int
+	enum MouseButtonCode
 	{
 			YG_MOUSE_BUTTON_1 = 0,
 			YG_MOUSE_BUTTON_2 = 1,
@@ -17,7 +17,7 @@ namespace Yugen
 			YG_MOUSE_BUTTON_RIGHT = YG_MOUSE_BUTTON_2,
 			YG_MOUSE_BUTTON_MIDDLE = YG_MOUSE_BUTTON_3
 	};
-	enum KeyCode : int
+	enum KeyCode
 	{
 			YG_KEY_SPACE = 32,
 			YG_KEY_APOSTROPHE = 39  /* ' */,

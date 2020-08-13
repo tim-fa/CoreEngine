@@ -6,9 +6,7 @@
 // Local
 #include "Event.h"
 
-namespace Yugen
-{
-	namespace Events
+namespace Yugen::Events
 	{
 
 		class KeyEvent : public Event
@@ -87,4 +85,3 @@ namespace Yugen
 				std::string toString() const override;
 		};
 	}
-}

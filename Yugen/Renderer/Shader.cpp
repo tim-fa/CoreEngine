@@ -11,7 +11,7 @@
 // Local
 #include "Shader.h"
 
-namespace Yugen
+namespace Yugen::Render
 {
 	Shader::Shader(const std::string& vertexSource, const std::string& fragmentSource)
 		: logger("Shader")

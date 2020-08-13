@@ -4,7 +4,7 @@
 
 #include "Layer.h"
 
-namespace Yugen
+namespace Yugen::Layers
 {
 	Layer::Layer(const std::string& debugName)
 		: debugName(debugName)

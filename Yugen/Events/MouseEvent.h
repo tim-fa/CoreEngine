@@ -3,7 +3,7 @@
 // Local
 #include "Event.h"
 
-namespace Yugen { namespace Events {
+namespace Yugen::Events {
 
 	class MouseButtonEvent : public Event
 	{
@@ -68,4 +68,4 @@ namespace Yugen { namespace Events {
 				std::string toString() const override;
 		};
 
-} }
+}

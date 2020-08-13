@@ -10,18 +10,18 @@
 #include "Renderer.h"
 #include "Platform/OpenGL/OpenGLVertexArray.h"
 
-namespace Yugen
+namespace Yugen::Render
 {
-VertexArray* VertexArray::create()
-{
-	switch (Renderer::getAPI()) {
-		case RendererAPI::None:
-			ASSERT(Renderer::getAPI() != RendererAPI::None, "No Renderer API is set!");
-		case RendererAPI::OpenGL:
-			return new OpenGLVertexArray();
-		default:
-			break;
+	VertexArray* VertexArray::create()
+	{
+		switch (Renderer::getAPI()) {
+			case RendererAPI::None:
+				ASSERT(Renderer::getAPI() != RendererAPI::None, "No Renderer API is set!");
+			case RendererAPI::OpenGL:
+				return new Platform::OpenGL::OpenGLVertexArray();
+			default:
+				break;
+		}
+		return nullptr;
 	}
-	return nullptr;
-}
 }

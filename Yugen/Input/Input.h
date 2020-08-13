@@ -10,9 +10,9 @@
 #include "Events/Events.h"
 #include "Keycodes.h"
 
-namespace Yugen
+namespace Yugen::Input
 {
-	class Input
+	class InputHandler
 	{
 		public:
 			static bool isKeyPressed(KeyCode keycode);

@@ -1,56 +1,56 @@
 #include "Input.h"
 
-namespace Yugen
+namespace Yugen::Input
 {
-	std::map<int, bool> Input::keyMap;
-	std::map<int, bool> Input::mouseMap;
-	float Input::mouseX, Input::mouseY;
+	std::map<int, bool> InputHandler::keyMap;
+	std::map<int, bool> InputHandler::mouseMap;
+	float InputHandler::mouseX, InputHandler::mouseY;
 
-	bool Input::isKeyPressed(KeyCode keycode)
+	bool InputHandler::isKeyPressed(KeyCode keycode)
 	{
 		return keyMap[keycode];
 	}
 
-	bool Input::isMouseButtonPressed(MouseButtonCode button)
+	bool InputHandler::isMouseButtonPressed(MouseButtonCode button)
 	{
 		return mouseMap[static_cast<const int>(button)];
 	}
 
-	float Input::getMouseX()
+	float InputHandler::getMouseX()
 	{
 		return mouseX;
 	}
 
-	float Input::getMouseY()
+	float InputHandler::getMouseY()
 	{
 		return mouseY;
 	}
 
-	bool Input::onKeyPressedEvent(Events::KeyPressedEvent& e)
+	bool InputHandler::onKeyPressedEvent(Events::KeyPressedEvent& e)
 	{
 		keyMap[e.getKeyCode()] = true;
 		return false;
 	}
 
-	bool Input::onKeyReleasedEvent(Events::KeyReleasedEvent& e)
+	bool InputHandler::onKeyReleasedEvent(Events::KeyReleasedEvent& e)
 	{
 		keyMap[e.getKeyCode()] = false;
 		return false;
 	}
 
-	bool Input::onMousePressedEvent(Events::MousePressedEvent& e)
+	bool InputHandler::onMousePressedEvent(Events::MousePressedEvent& e)
 	{
 		mouseMap[e.getButton()] = false;
 		return false;
 	}
 
-	bool Input::onMouseReleasedEvent(Events::MouseReleasedEvent& e)
+	bool InputHandler::onMouseReleasedEvent(Events::MouseReleasedEvent& e)
 	{
 		mouseMap[e.getButton()] = false;
 		return false;
 	}
 
-	bool Input::onMouseMovedEvent(Events::MouseMovedEvent& e)
+	bool InputHandler::onMouseMovedEvent(Events::MouseMovedEvent& e)
 	{
 		mouseX = e.getX();
 		mouseY = e.getY();

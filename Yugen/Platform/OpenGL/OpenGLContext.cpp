@@ -5,7 +5,7 @@
 // Local
 #include "OpenGLContext.h"
 
-namespace Yugen
+namespace Yugen::Platform::OpenGL
 {
 	OpenGLContext::OpenGLContext(GLFWwindow* windowHandle)
 		: windowHandle(windowHandle)

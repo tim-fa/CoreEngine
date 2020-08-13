@@ -11,7 +11,7 @@
 // Local
 #include "Buffer.h"
 
-namespace Yugen
+namespace Yugen::Render
 {
 class VertexArray
 {

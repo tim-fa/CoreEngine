@@ -1,3 +1,4 @@
+#pragma once
 //
 // Created by Tim on 07.08.2020.
 //
@@ -14,12 +15,10 @@
 
 namespace Yugen
 {
-	class Application;
-
-	class ImGuiLayer : public Layer
+	class ImGuiLayer : public Layers::Layer
 	{
 		public:
-			explicit ImGuiLayer(Application& app);
+			explicit ImGuiLayer(class Application& app);
 			~ImGuiLayer() override;
 
 			void onCreate() override;

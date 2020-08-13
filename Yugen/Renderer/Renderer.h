@@ -5,9 +5,8 @@
 #ifndef ENGINE_RENDERER_H
 #define ENGINE_RENDERER_H
 
-namespace Yugen
+namespace Yugen::Render
 {
-
 	enum class RendererAPI
 	{
 			None,

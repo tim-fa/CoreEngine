@@ -1,3 +1,4 @@
+#pragma once
 //
 // Created by Tim on 10.08.2020.
 //
@@ -9,9 +10,9 @@
 #include "Macros.h"
 #include "Renderer/Buffer.h"
 
-namespace Yugen
+namespace Yugen::Platform::OpenGL
 {
-	class OpenGLVertexBuffer : public VertexBuffer
+	class OpenGLVertexBuffer : public Render::VertexBuffer
 	{
 		public:
 			OpenGLVertexBuffer(float* vertices, uint32 size);
@@ -24,7 +25,7 @@ namespace Yugen
 			uint32 rendererId{};
 	};
 
-	class OpenGLIndexBuffer : public IndexBuffer
+	class OpenGLIndexBuffer : public Render::IndexBuffer
 	{
 		public:
 			OpenGLIndexBuffer(uint32* indices, uint32 count);
